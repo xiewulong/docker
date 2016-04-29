@@ -1,5 +1,5 @@
 pptpd:
-  image: vimagick/pptpd
+  image: xiewulong/pptpd
   ports:
     - '1723:1723'
   volumes:
