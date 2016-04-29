@@ -1,12 +1,10 @@
-version: '1.0.0'
-services:
-  pptpd:
-    image: xiewulong/pptpd
-    ports:
-      - '1723:1723'
-    volumes:
-      - ./pptpd.conf:/etc/pptpd.conf
-      - ./pptpd-options:/etc/ppp/pptpd-options
-      - ./chap-secrets:/etc/ppp/chap-secrets
-    privileged: true
-    restart: on-failure
+pptpd:
+  image: vimagick/pptpd
+  ports:
+    - '1723:1723'
+  volumes:
+    - ./pptpd.conf:/etc/pptpd.conf
+    - ./pptpd-options:/etc/ppp/pptpd-options
+    - ./chap-secrets:/etc/ppp/chap-secrets
+  privileged: true
+  restart: on-failure
