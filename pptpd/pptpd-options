@@ -26,3 +26,5 @@ nobsdcomp
 novj
 novjccomp
 nologfd
+
+#nodefaultroute
