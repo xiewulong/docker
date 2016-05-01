@@ -8,8 +8,8 @@ RUN yum -y install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-
 	yum -y install mariadb-server && \
 	yum clean all
 
-COPY mariadb /
+COPY docker-cmd.sh /
 
 EXPOSE 3306
 
-CMD /mariadb
+CMD /docker-cmd.sh
