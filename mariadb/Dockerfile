@@ -1,9 +1,5 @@
-#
-# Dockerfile for mariadb
-#
-
 FROM alpine
-MAINTAINER kev <noreplay@easypi.info>
+MAINTAINER xiewulong <xiewulong@vip.qq.com>
 
 RUN set -xe \
     && apk add -U bash \
