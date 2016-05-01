@@ -9,6 +9,7 @@ RUN yum -y install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-
 	yum clean all
 
 COPY docker-cmd.sh /
+RUN chmod +x /docker-cmd.sh
 
 EXPOSE 3306
 
