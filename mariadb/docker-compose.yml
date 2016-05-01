@@ -1,5 +1,5 @@
 mariadb:
-  image: vimagick/mariadb
+  image: xiewulong/mariadb
   restart: on-failure
   privileged: true
   ports:
