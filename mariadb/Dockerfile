@@ -1,21 +1,15 @@
-FROM alpine
+FROM centos
+
 MAINTAINER xiewulong <xiewulong@vip.qq.com>
 
-RUN set -xe \
-    && apk add -U bash \
-                  mariadb \
-                  mariadb-client \
-                  tzdata \
-    && mkdir -p /run/mysqld \
-    && chown mysql:mysql /run/mysqld \
-    && sed -Ei -e 's/^(bind-address|log)/#&/' \
-               -e 's/^\[mysqld\]$/&\nskip-host-cache\nskip-name-resolve\nuser=mysql/' /etc/mysql/my.cnf \
-    && rm -rf /var/cache/apk/*
+RUN yum -y install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm && \
+	yum -y update && \
+	yum -y upgrade && \
+	yum -y install mariadb-server && \
+	yum clean all
 
-COPY docker-entrypoint.sh /
-
-VOLUME /var/lib/mysql
-ENTRYPOINT ["/docker-entrypoint.sh"]
+COPY mariadb /
 
 EXPOSE 3306
-CMD ["mysqld"]
+
+CMD /mariadb
