@@ -12,8 +12,6 @@ VOLUME /var/lib/mysql
 
 COPY mariadb /
 
-ENTRYPOINT ["/mariadb"]
-
 EXPOSE 3306
 
-CMD ["mysqld"]
+CMD /mariadb

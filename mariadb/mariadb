@@ -22,3 +22,5 @@ if [ ! -e '/root/privileges.sql' ]; then
 	sleep 5
 	ps -wef | grep mysql | grep -v grep | awk '{print $2}' | xargs kill -9
 fi
+
+mysqld_safe --basedir=/usr --user=mysql
