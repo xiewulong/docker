@@ -4,5 +4,7 @@ mariadb:
   privileged: true
   ports:
     - '3306:3306'
+  volumes:
+    - ./my.cnf:/etc/my.cnf
   environment:
     - MYSQL_PASSWORD=root
