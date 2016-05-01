@@ -4,5 +4,3 @@ mariadb:
   privileged: true
   ports:
     - '3306:3306'
-  environment:
-    - MYSQL_PASSWORD=root
