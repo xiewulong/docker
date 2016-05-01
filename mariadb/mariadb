@@ -1,34 +1,24 @@
 #!/bin/bash
 
-app=mariadb
-name=`whoami`
-dir=$(cd `dirname $0`; pwd)
-port=3306
-password=root
+#check permission
+if [ `id -u` != '0' ]; then
+	echo 'Error: You must be root to run this script'
+	exit 1
+fi
 
-eval set -- `getopt -q -o n:N:p:P: "$@"`
-while true
-do
-	case $1 in
-		-n) name=${name}-$2; shift 2;;
-		-N) name=$2; shift 2;;
-		-p) port=$2:${port}; shift 2;;
-		-P) password=$2; shift 2;;
-		--) shift; break;;
-	esac
-done
+#mysql_install_db
+[ ! -d '/var/lib/mysql/mysql' ] && mysql_install_db --user=mysql
 
-alias=${app}-${name}
-
-case $1 in
-	start)
-		if [ ! `docker start ${alias} 2> /dev/null` ]; then
-			docker run --name ${alias} -p ${port} -e MYSQL_PASSWORD=${password} -d xiewulong/mariadb
-		fi
-		echo "${name}(mariadb) is already running on `docker port ${alias} 3306`."
-		;;
-	stop) docker stop ${alias};;
-	restart) docker restart ${alias};;
-	port) docker port ${alias} 3306;;
-	*) echo "Usage: $0 {start|stop|restart|port} [-n|N name] [-p ${port}] [-P password]"; exit 1;;
-esac
+#privileges
+if [ ! -e '/root/privileges.sql' ]; then
+	sql=/root/privileges.sql
+	echo "truncate mysql.user;" > ${sql}
+	echo "grant all privileges on *.* to root@localhost identified by '$MYSQL_PASSWORD';" >> ${sql}
+	echo "grant all privileges on *.* to root@'%' identified by '$MYSQL_PASSWORD';" >> ${sql}
+	echo "flush privileges;" >> ${sql}
+	mysqld_safe --basedir=/usr --user=mysql &
+	sleep 5
+	mysql -v < ${sql}
+	sleep 5
+	ps -wef | grep mysql | grep -v grep | awk '{print $2}' | xargs kill -9
+fi
