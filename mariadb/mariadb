@@ -13,8 +13,8 @@ fi
 if [ ! -e '/root/privileges.sql' ]; then
 	sql=/root/privileges.sql
 	echo "truncate mysql.user;" > ${sql}
-	echo "grant all privileges on *.* to root@localhost identified by 'root';" >> ${sql}
-	echo "grant all privileges on *.* to root@'%' identified by 'root';" >> ${sql}
+	echo "grant all privileges on *.* to root@localhost identified by '$MYSQL_PASSWORD';" >> ${sql}
+	echo "grant all privileges on *.* to root@'%' identified by '$MYSQL_PASSWORD';" >> ${sql}
 	echo "flush privileges;" >> ${sql}
 	mysqld_safe --basedir=/usr --user=mysql &
 	sleep 5
