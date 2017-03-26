@@ -1,6 +1,6 @@
 mariadb:
   image: xiewulong/mariadb
-  restart: on-failure
+  restart: always
   privileged: true
   ports:
     - '3306:3306'
