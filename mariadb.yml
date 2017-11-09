@@ -6,6 +6,6 @@ mariadb:
   environment:
     MYSQL_ROOT_PASSWORD: root
   volumes:
-    - mariadb/conf.d:/etc/mysql/conf.d
-    - mariadb/data:/var/lib/mysql
+    - ./mariadb/conf.d:/etc/mysql/conf.d
+    - ./mariadb/data:/var/lib/mysql
   # privileged: false
