@@ -1,0 +1,6 @@
+# Docker compose yaml|yml
+docker-compose.yaml
+docker-compose.yml
+
+# Directories
+mariadb/

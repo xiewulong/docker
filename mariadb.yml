@@ -1,0 +1,11 @@
+mariadb:
+  image: mariadb
+  restart: always
+  ports:
+    - 3306
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+  volumes:
+    - mariadb/conf.d:/etc/mysql/conf.d
+    - mariadb/data:/var/lib/mysql
+  # privileged: false
