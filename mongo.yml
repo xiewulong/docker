@@ -1,0 +1,7 @@
+mongo:
+  image: mongo:latest
+  restart: always
+  ports:
+    - 27027
+  volumes:
+    - ./mongo/data:/data/db

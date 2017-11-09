@@ -4,3 +4,4 @@ docker-compose.yml
 
 # Directories
 mariadb/
+mongo/
