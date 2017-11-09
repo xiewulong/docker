@@ -1,5 +1,5 @@
 mariadb:
-  image: mariadb
+  image: mariadb:latest
   restart: always
   ports:
     - 3306
