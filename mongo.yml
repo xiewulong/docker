@@ -1,7 +1,10 @@
 mongo:
   image: mongo:latest
+  container_name: mongo
   restart: always
   ports:
-    - 27027
+    - 27017
   volumes:
     - ./mongo/data:/data/db
+    - ./mongo/mongod.conf:/etc/mongod.conf
+  command: --config /etc/mongod.conf

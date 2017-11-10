@@ -1,11 +1,12 @@
 mariadb:
   image: mariadb:latest
+  container_name: mariadb
   restart: always
   ports:
     - 3306
+  volumes:
+    - ./mariadb/data:/var/lib/mysql
+    - ./mariadb/conf.d:/etc/mysql/conf.d
+  command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
   environment:
     MYSQL_ROOT_PASSWORD: root
-  volumes:
-    - ./mariadb/conf.d:/etc/mysql/conf.d
-    - ./mariadb/data:/var/lib/mysql
-  # privileged: false
