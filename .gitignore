@@ -3,6 +3,7 @@ docker-compose.yaml
 docker-compose.yml
 
 # Directories
+jenkins/
 mariadb/
 mongo/
 redis/

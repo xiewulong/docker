@@ -1,0 +1,11 @@
+jenkins:
+  image: jenkins:latest
+  container_name: jenkins
+  restart: always
+  ports:
+    - 8080
+    - 50000
+  # volumes:
+  #   - ./jenkins/home:/var/jenkins_home
+  environment:
+    JAVA_OPTS: -Dhudson.footerURL=http://mycompany.com
