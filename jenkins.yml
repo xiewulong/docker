@@ -5,7 +5,7 @@ jenkins:
   ports:
     - 8080
     - 50000
-  # volumes:
-  #   - ./jenkins/home:/var/jenkins_home
+  volumes:
+    - ./jenkins/home:/var/jenkins_home
   environment:
     JAVA_OPTS: -Dhudson.footerURL=http://mycompany.com
