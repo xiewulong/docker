@@ -1,6 +1,6 @@
 registry:
-  image: registry:latest
   container_name: registry
+  image: registry:latest
   restart: always
   ports:
     - 5000

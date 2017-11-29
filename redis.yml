@@ -1,6 +1,6 @@
 redis:
-  image: redis:latest
   container_name: redis
+  image: redis:latest
   restart: always
   ports:
     - 6379

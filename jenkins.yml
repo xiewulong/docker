@@ -1,6 +1,6 @@
 jenkins:
-  image: jenkins:latest
   container_name: jenkins
+  image: jenkins:latest
   restart: always
   ports:
     - 8080
