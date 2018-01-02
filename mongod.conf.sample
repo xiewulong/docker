@@ -1,2 +1,2 @@
-security:
-  authorization: enabled
+# security:
+#   authorization: enabled  # db.createUser({user: 'username', pwd: 'password', roles: [{role: 'userAdminAnyDatabase', db: 'admin'}]});
