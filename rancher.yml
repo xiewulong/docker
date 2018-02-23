@@ -1,0 +1,8 @@
+rancher:
+  container_name: rancher
+  image: rancher/server:stable
+  restart: always
+  ports:
+    - 3306
+    - 8080
+  command: --db-host localhost --db-port 3306 --db-user cattle --db-pass cattle --db-name cattle
