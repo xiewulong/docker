@@ -65,7 +65,8 @@ RUN apk add --no-cache --virtual .build-deps \
     && git clone https://github.com/xiewulong/nginx.git /home/www/nginx \
     && cp /home/www/nginx/conf/nginx.conf.sample /home/www/nginx/conf/nginx.conf \
     && cp /home/www/nginx/vhost.conf.sample /home/www/nginx/vhost.conf \
-    && mkdir /home/www/app
+    && mkdir /home/www/app \
+    && chown www:www -R /home/www
 
 ENV APP_PORT 3000
 EXPOSE 3000
