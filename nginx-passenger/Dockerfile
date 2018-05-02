@@ -12,8 +12,8 @@ RUN apk add --no-cache --virtual .build-deps \
     # && apk del .build-deps \
     \
     && cd \
-    && addgroup -S www \
-    && adduser -D -S -s /sbin/nologin -G www www \
+    && addgroup -S app \
+    && adduser -D -S -s /sbin/nologin -G app app \
     \
     && wget -c "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \
     && tar zxvf "ruby-${RUBY_VERSION}.tar.gz" \
@@ -36,8 +36,8 @@ RUN apk add --no-cache --virtual .build-deps \
     && tar zxvf "nginx-${NGINX_VERSION}.tar.gz" \
     && cd "nginx-${NGINX_VERSION}" \
     && ./configure  --prefix=/usr/local/nginx \
-                    --user=www \
-                    --group=www \
+                    --user=app \
+                    --group=app \
                     --with-http_ssl_module \
                     --with-http_realip_module \
                     --with-http_addition_module \
@@ -81,17 +81,11 @@ RUN apk add --no-cache --virtual .build-deps \
     && cd .. \
     && rm -rf "node-v${NODE_VERSION}" "node-v${NODE_VERSION}.tar.gz" \
     && echo 'export PATH=/usr/local/node/bin:$PATH' > /etc/profile.d/node.sh \
-    && source /etc/profile.d/node.sh \
-    \
-    && git clone https://github.com/xiewulong/nginx.git /home/www/nginx \
-    && cp /home/www/nginx/conf/nginx.conf.sample /home/www/nginx/conf/nginx.conf \
-    && cp /home/www/nginx/vhost.conf.sample /home/www/nginx/vhost.conf \
-    && mkdir /home/www/app \
-    && chown www:www -R /home/www
+    && source /etc/profile.d/node.sh
 
 ENV APP_PORT 3000
 EXPOSE 3000
 
-VOLUME ["/home/www/app", "/home/www/nginx/conf/nginx.conf", "/home/www/nginx/vhost.conf"]
+VOLUME ["/home/app"]
 ENTRYPOINT ["/usr/local/nginx/sbin/nginx"]
-CMD ["-p", "/home/www/nginx"]
+CMD ["-c", "/home/app/nginx.conf"]
