@@ -9,6 +9,7 @@ ENV NODE_VERSION 8.11.1
 RUN apk add --no-cache --virtual .build-deps \
             curl g++ gcc gnupg linux-headers make python \
             curl-dev gd-dev geoip-dev git libxslt-dev openssl-dev pcre-dev \
+    && apk del .build-deps \
     \
     && cd \
     && addgroup -S www \
