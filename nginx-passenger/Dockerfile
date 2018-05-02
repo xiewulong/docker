@@ -83,9 +83,8 @@ RUN apk add --no-cache --virtual .build-deps \
     && echo 'export PATH=/usr/local/node/bin:$PATH' > /etc/profile.d/node.sh \
     && source /etc/profile.d/node.sh
 
-ENV APP_PORT 3000
-EXPOSE 3000
+EXPOSE 80
 
 VOLUME ["/home/app"]
 ENTRYPOINT ["/usr/local/nginx/sbin/nginx"]
-CMD ["-c", "/home/app/nginx.conf"]
+CMD ["-g", "daemon off;", "-c", "/home/app/nginx.conf"]
