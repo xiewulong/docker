@@ -35,17 +35,38 @@ RUN apk add --no-cache --virtual .build-deps \
     && wget -c "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
     && tar zxvf "nginx-${NGINX_VERSION}.tar.gz" \
     && cd "nginx-${NGINX_VERSION}" \
-    && ./configure --prefix=/usr/local/nginx \
-                   --user=www --group=www \
-                   --with-http_gzip_static_module \
-                   --with-http_image_filter_module=dynamic \
-                   --with-http_ssl_module \
-                   --with-http_stub_status_module \
-                   --with-http_xslt_module=dynamic \
-                   --with-mail=dynamic \
-                   --with-stream=dynamic \
-                   --with-compat \
-                   --add-dynamic-module=`/usr/local/passenger/bin/passenger-config --nginx-addon-dir` \
+    && ./configure  --prefix=/usr/local/nginx \
+                    --user=www \
+                    --group=www \
+                    --with-http_ssl_module \
+                    --with-http_realip_module \
+                    --with-http_addition_module \
+                    --with-http_sub_module \
+                    --with-http_dav_module \
+                    --with-http_flv_module \
+                    --with-http_mp4_module \
+                    --with-http_gunzip_module \
+                    --with-http_gzip_static_module \
+                    --with-http_random_index_module \
+                    --with-http_secure_link_module \
+                    --with-http_stub_status_module \
+                    --with-http_auth_request_module \
+                    --with-http_xslt_module=dynamic \
+                    --with-http_image_filter_module=dynamic \
+                    --with-http_geoip_module=dynamic \
+                    --with-threads \
+                    --with-stream \
+                    --with-stream_ssl_module \
+                    --with-stream_ssl_preread_module \
+                    --with-stream_realip_module \
+                    --with-stream_geoip_module=dynamic \
+                    --with-http_slice_module \
+                    --with-mail \
+                    --with-mail_ssl_module \
+                    --with-compat \
+                    --with-file-aio \
+                    --with-http_v2_module \
+                    --add-dynamic-module=`/usr/local/passenger/bin/passenger-config --nginx-addon-dir` \
     && make && make install \
     && cd .. \
     && rm -rf "nginx-${NGINX_VERSION}" "nginx-${NGINX_VERSION}.tar.gz" \
