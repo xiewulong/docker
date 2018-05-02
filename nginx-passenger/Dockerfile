@@ -85,6 +85,8 @@ RUN apk add --no-cache --virtual .build-deps \
 
 EXPOSE 80
 
+STOPSIGNAL SIGTERM
+
 VOLUME ["/home/app"]
 ENTRYPOINT ["/usr/local/nginx/sbin/nginx"]
 CMD ["-g", "daemon off;", "-c", "/home/app/nginx.conf"]
