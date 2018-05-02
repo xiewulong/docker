@@ -4,12 +4,13 @@ ENV RUBY_MAJOR 2.5
 ENV RUBY_VERSION 2.5.1
 ENV PASSENGER_VERSION 5.2.3
 ENV NGINX_VERSION 1.14.0
+ENV NODE_VERSION 8.11.1
 
-WORKDIR /root
 RUN apk add --no-cache --virtual .build-deps \
-            g++ gcc linux-headers make \
+            curl g++ gcc gnupg linux-headers make python \
             curl-dev gd-dev geoip-dev git libxslt-dev openssl-dev pcre-dev \
     \
+    && cd \
     && addgroup -S www \
     && adduser -D -S -s /sbin/nologin -G www www \
     \
@@ -33,16 +34,38 @@ RUN apk add --no-cache --virtual .build-deps \
     && wget -c "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
     && tar zxvf "nginx-${NGINX_VERSION}.tar.gz" \
     && cd "nginx-${NGINX_VERSION}" \
-    && ./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_gzip_static_module --with-http_image_filter_module=dynamic --with-http_ssl_module --with-http_stub_status_module --with-http_xslt_module=dynamic --with-mail=dynamic --with-stream=dynamic --with-compat --add-dynamic-module=`/usr/local/passenger/bin/passenger-config --nginx-addon-dir` \
+    && ./configure --prefix=/usr/local/nginx \
+                   --user=www --group=www \
+                   --with-http_gzip_static_module \
+                   --with-http_image_filter_module=dynamic \
+                   --with-http_ssl_module \
+                   --with-http_stub_status_module \
+                   --with-http_xslt_module=dynamic \
+                   --with-mail=dynamic \
+                   --with-stream=dynamic \
+                   --with-compat \
+                   --add-dynamic-module=`/usr/local/passenger/bin/passenger-config --nginx-addon-dir` \
     && make && make install \
     && cd .. \
     && rm -rf "nginx-${NGINX_VERSION}" "nginx-${NGINX_VERSION}.tar.gz" \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
     && source /etc/profile.d/nginx.sh \
     \
+    && wget -c "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}.tar.gz" \
+    && tar zxvf "node-v${NODE_VERSION}.tar.gz" \
+    && cd "node-v${NODE_VERSION}" \
+    && ./configure --prefix=/usr/local/node \
+    && make && make install \
+    && cd .. \
+    && rm -rf "node-v${NODE_VERSION}" "node-v${NODE_VERSION}.tar.gz" \
+    && echo 'export PATH=/usr/local/node/bin:$PATH' > /etc/profile.d/node.sh \
+    && source /etc/profile.d/node.sh \
+    \
     && mkdir /home/www/app \
     && cd /home/www \
-    && git clone https://github.com/xiewulong/nginx.git
+    && git clone https://github.com/xiewulong/nginx.git \
+    && cp /home/www/nginx/conf/nginx.conf.sample /home/www/nginx/conf/nginx.conf \
+    && cp /home/www/nginx/vhost.conf.sample /home/www/nginx/vhost.conf
 
 ENV APP_PORT 3000
 EXPOSE 3000
