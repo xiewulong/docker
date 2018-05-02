@@ -62,11 +62,10 @@ RUN apk add --no-cache --virtual .build-deps \
     && echo 'export PATH=/usr/local/node/bin:$PATH' > /etc/profile.d/node.sh \
     && source /etc/profile.d/node.sh \
     \
-    && mkdir /home/www/app \
-    && cd /home/www \
-    && git clone https://github.com/xiewulong/nginx.git \
+    && git clone https://github.com/xiewulong/nginx.git /home/www/nginx \
     && cp /home/www/nginx/conf/nginx.conf.sample /home/www/nginx/conf/nginx.conf \
-    && cp /home/www/nginx/vhost.conf.sample /home/www/nginx/vhost.conf
+    && cp /home/www/nginx/vhost.conf.sample /home/www/nginx/vhost.conf \
+    && mkdir /home/www/app
 
 ENV APP_PORT 3000
 EXPOSE 3000
