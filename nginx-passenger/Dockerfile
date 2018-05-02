@@ -11,7 +11,7 @@ RUN apk add --no-cache --virtual .build-deps \
             curl-dev gd-dev geoip-dev git libxslt-dev openssl-dev pcre-dev \
     \
     && addgroup -S www \
-    && adduser -D -S -s /sbin/nologin && -G www www \
+    && adduser -D -S -s /sbin/nologin -G www www \
     \
     && wget -c "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \
     && tar zxvf "ruby-${RUBY_VERSION}.tar.gz" \
