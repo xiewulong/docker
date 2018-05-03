@@ -16,6 +16,7 @@ RUN cd \
                       gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
     && yum clean all \
     \
+    && groupadd -g 1000 www \
     && adduser -s /sbin/nologin -u 1000 -g 1000 www \
     \
     && wget -c "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \
