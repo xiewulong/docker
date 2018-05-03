@@ -1,4 +1,4 @@
-user  root;
+#user  nobody;
 worker_processes  1;
 
 error_log   /home/node/app/log/nginx.log;
@@ -38,7 +38,7 @@ http {
 
   passenger_root    /usr/local/passenger;
   passenger_ruby    /usr/local/ruby/bin/ruby;
-  passenger_nodejs  /usr/local/bin/node;
+  passenger_nodejs  /usr/local/node/bin/node;
   passenger_python  /usr/bin/python;
 
   server {
@@ -49,8 +49,8 @@ http {
     index         index.html index.htm;
 
     passenger_enabled        on;
-    passenger_user           root;
-    passenger_group          root;
+    #passenger_user           www;
+    #passenger_group          www;
     #passenger_base_uri       /base/uri;
     #passenger_app_root       /path/to/app/root;
     #passenger_document_root  /path/to/document/root;

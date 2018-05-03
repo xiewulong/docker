@@ -1,15 +1,22 @@
-FROM node:carbon-alpine
+FROM centos:latest
 
 ENV RUBY_MAJOR 2.5
 ENV RUBY_VERSION 2.5.1
 ENV PASSENGER_VERSION 5.2.3
 ENV NGINX_VERSION 1.14.0
+ENV NODE_VERSION 8.11.1
 
-RUN apk add --no-cache --virtual .build-deps \
-            g++ gcc gnupg linux-headers make python \
-            gdb gd-dev geoip-dev libxslt-dev openssl openssl-dev pcre-dev \
+RUN cd \
     \
-    && cd \
+    && yum -y install epel-release yum-utils \
+    && yum-config-manager --enable epel \
+    && yum -y update \
+    && yum -y upgrade \
+    && yum -y install gcc make wget \
+                      gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
+    && yum clean all \
+    \
+    && adduser -s /sbin/nologin -u 1000 -g 1000 www \
     \
     && wget -c "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \
     && tar zxvf "ruby-${RUBY_VERSION}.tar.gz" \
@@ -32,8 +39,8 @@ RUN apk add --no-cache --virtual .build-deps \
     && tar zxvf "nginx-${NGINX_VERSION}.tar.gz" \
     && cd "nginx-${NGINX_VERSION}" \
     && ./configure  --prefix=/usr/local/nginx \
-                    --user=node \
-                    --group=node \
+                    --user=www \
+                    --group=www \
                     --with-http_ssl_module \
                     --with-http_realip_module \
                     --with-http_addition_module \
@@ -69,12 +76,17 @@ RUN apk add --no-cache --virtual .build-deps \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
     && source /etc/profile.d/nginx.sh \
     \
-    && apk del .build-deps
+    && wget -c "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" \
+    && tar xvf "node-v${NODE_VERSION}-linux-x64.tar.xz" \
+    && mv "node-v${NODE_VERSION}-linux-x64" /usr/local/node \
+    && rm -rf "node-v${NODE_VERSION}-linux-x64.tar.xz" \
+    && echo 'export PATH=/usr/local/node/bin:$PATH' > /etc/profile.d/node.sh \
+    && source /etc/profile.d/node.sh
 
 EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
-VOLUME ["/home/node/app"]
+VOLUME ["/home/www/app"]
 ENTRYPOINT []
-CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;", "-c", "/home/node/app/nginx.conf"]
+CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;", "-c", "/home/www/app/nginx.conf"]
