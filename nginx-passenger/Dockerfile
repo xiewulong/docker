@@ -13,7 +13,7 @@ RUN cd \
     && yum -y update \
     && yum -y upgrade \
     && yum -y install gcc gcc-c++ make wget \
-                      gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
+                      curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
     && yum clean all \
     \
     && groupadd -g 1000 www \
