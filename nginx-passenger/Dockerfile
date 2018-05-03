@@ -68,11 +68,12 @@ RUN apk add --no-cache --virtual .build-deps \
     && cd .. \
     && rm -rf "nginx-${NGINX_VERSION}" "nginx-${NGINX_VERSION}.tar.gz" \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
-    && source /etc/profile.d/nginx.sh \
+    && source /etc/profile.d/nginx.sh
 
 EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
 VOLUME ["/home/node/app"]
+ENTRYPOINT []
 CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;", "-c", "/home/node/app/nginx.conf"]
