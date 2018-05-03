@@ -8,7 +8,6 @@ ENV NGINX_VERSION 1.14.0
 RUN apk add --no-cache --virtual .build-deps \
             g++ gcc gnupg linux-headers make python \
             gd-dev geoip-dev libxslt-dev openssl openssl-dev pcre-dev \
-    # && apk del .build-deps \
     \
     && cd \
     \
@@ -68,7 +67,9 @@ RUN apk add --no-cache --virtual .build-deps \
     && cd .. \
     && rm -rf "nginx-${NGINX_VERSION}" "nginx-${NGINX_VERSION}.tar.gz" \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
-    && source /etc/profile.d/nginx.sh
+    && source /etc/profile.d/nginx.sh \
+    \
+    && apk del .build-deps
 
 EXPOSE 80
 
