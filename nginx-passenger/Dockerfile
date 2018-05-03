@@ -7,7 +7,7 @@ ENV NGINX_VERSION 1.14.0
 
 RUN apk add --no-cache --virtual .build-deps \
             g++ gcc gnupg linux-headers make python \
-            gd-dev geoip-dev libxslt-dev openssl openssl-dev pcre-dev \
+            gdb gd-dev geoip-dev libxslt-dev openssl openssl-dev pcre-dev \
     \
     && cd \
     \
