@@ -1,7 +1,7 @@
 #user  nobody;
 worker_processes  1;
 
-error_log   /home/node/app/log/nginx.log;
+error_log   /home/www/app/log/nginx.log;
 #error_log   logs/error.log  notice;
 #error_log   logs/error.log  info;
 
@@ -24,7 +24,7 @@ http {
                     '$status $body_bytes_sent "$http_referer" '
                     '"$http_user_agent" "$http_x_forwarded_for"';
 
-  access_log  /home/node/app/log/nginx.log  main;
+  access_log  /home/www/app/log/nginx.log  main;
 
   sendfile    on;
   #tcp_nopush  on;
@@ -45,7 +45,7 @@ http {
     listen        80 default_server;
 
     server_name   localhost _;
-    root          /home/node/app/public;
+    root          /home/www/app/public;
     index         index.html index.htm;
 
     passenger_enabled        on;
