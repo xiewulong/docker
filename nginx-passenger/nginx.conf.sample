@@ -29,15 +29,17 @@ http {
   sendfile    on;
   #tcp_nopush  on;
 
-  #keepalive_timeout   0;
-  keepalive_timeout   65;
+  #keepalive_timeout   75s;
 
-  #client_max_body_size  60m;
+  #gzip          on;
+  #gzip_disable  'MSIE [1-6]\.(?!.*SV1)';
+
+  #client_max_body_size  1m;
 
   passenger_root    /usr/local/passenger;
-  #passenger_ruby    /usr/local/ruby/bin/ruby;
-  #passenger_nodejs  /usr/local/node/bin/node;
-  #passenger_python  /usr/bin/python;
+  passenger_ruby    /usr/local/ruby/bin/ruby;
+  passenger_nodejs  /usr/local/bin/node;
+  passenger_python  /usr/bin/python;
 
   server {
     listen        80 default_server;
