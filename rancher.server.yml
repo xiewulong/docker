@@ -1,7 +1,7 @@
 rancher_server:
   container_name: rancher_server
   image: rancher/server:stable
-  restart: always
+  restart: unless-stopped
   ports:
     - 3306
     - 8080

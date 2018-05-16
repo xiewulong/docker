@@ -1,7 +1,13 @@
 rancher:
   container_name: rancher
   image: rancher/rancher:stable
-  restart: always
+  restart: unless-stopped
   ports:
     - 80
     - 443
+  volumes:
+    - ./rancher/cacerts.pem:/etc/rancher/ssl/cacerts.pem
+    - ./rancher/fullchain.pem:/etc/rancher/ssl/cert.pem
+    - ./rancher/privkey.pem:/etc/rancher/ssl/key.pem
+    - ./rancher/data:/var/lib/rancher
+  command: --acme-domain rancher.mydomain.com
