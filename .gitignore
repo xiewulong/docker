@@ -6,5 +6,6 @@ docker-compose.yml
 jenkins/
 mariadb/
 mongo/
+rancher/
 redis/
 registry/
