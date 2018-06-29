@@ -1,8 +1,16 @@
 registry:
   container_name: registry
   image: registry:latest
-  restart: always
+  restart: unless-stopped
   ports:
     - 5000
+  environment:
+    REGISTRY_AUTH: htpasswd
+    REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+    REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+    REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt
+    REGISTRY_HTTP_TLS_KEY: /certs/domain.key
   volumes:
+    - ./registry/auth:/auth
+    - ./registry/certs:/certs
     - ./registry/data:/var/lib/registry
