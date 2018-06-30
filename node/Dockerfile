@@ -27,6 +27,6 @@ EXPOSE 80
 
 STOPSIGNAL SIGTERM
 
-VOLUME ["/home/www/app"]
+VOLUME []
 ENTRYPOINT []
 CMD ["/usr/local/node/bin/node"]
