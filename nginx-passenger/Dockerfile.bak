@@ -1,9 +1,10 @@
-FROM xiewulong/node:latest
+FROM centos:latest
 
 ENV RUBY_MAJOR 2.5
 ENV RUBY_VERSION 2.5.1
-ENV PASSENGER_VERSION 5.3.3
+ENV PASSENGER_VERSION 5.2.3
 ENV NGINX_VERSION 1.14.0
+ENV NODE_VERSION 8.11.1
 
 RUN cd \
     \
@@ -14,6 +15,9 @@ RUN cd \
     && yum -y install gcc gcc-c++ make wget \
                       curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
     && yum clean all \
+    \
+    && groupadd -g 1000 www \
+    && adduser -s /sbin/nologin -u 1000 -g 1000 www \
     \
     && wget -c "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \
     && tar zxvf "ruby-${RUBY_VERSION}.tar.gz" \
@@ -72,6 +76,13 @@ RUN cd \
     && rm -rf "nginx-${NGINX_VERSION}" "nginx-${NGINX_VERSION}.tar.gz" \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
     && source /etc/profile.d/nginx.sh \
+    \
+    && wget -c "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" \
+    && tar xvf "node-v${NODE_VERSION}-linux-x64.tar.xz" \
+    && mv "node-v${NODE_VERSION}-linux-x64" /usr/local/node \
+    && rm -rf "node-v${NODE_VERSION}-linux-x64.tar.xz" \
+    && echo 'export PATH=/usr/local/node/bin:$PATH' > /etc/profile.d/node.sh \
+    && source /etc/profile.d/node.sh
 
 EXPOSE 80
 

@@ -8,7 +8,7 @@ RUN cd \
     && yum-config-manager --enable epel \
     && yum -y update \
     && yum -y upgrade \
-    && yum -y install wget \
+    && yum -y install gcc gcc-c++ make wget \
     && yum clean all \
     \
     && groupadd -g 1000 www \
