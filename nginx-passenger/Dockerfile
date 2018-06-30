@@ -7,10 +7,6 @@ ENV NGINX_VERSION 1.14.0
 
 RUN cd \
     \
-    && yum -y install epel-release yum-utils \
-    && yum-config-manager --enable epel \
-    && yum -y update \
-    && yum -y upgrade \
     && yum -y install gcc gcc-c++ make wget \
                       curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
     && yum clean all \
