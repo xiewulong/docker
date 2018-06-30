@@ -18,8 +18,10 @@ RUN cd \
     && tar xvf "node-v${NODE_VERSION}-linux-x64.tar.xz" \
     && mv "node-v${NODE_VERSION}-linux-x64" /usr/local/node \
     && rm -rf "node-v${NODE_VERSION}-linux-x64.tar.xz" \
-    && echo 'export PATH=/usr/local/node/bin:$PATH' > /etc/profile.d/node.sh \
-    && source /etc/profile.d/node.sh
+    && ln -sf /usr/local/node/bin/node /usr/local/bin/node \
+    && ln -sf /usr/local/node/bin/npm /usr/local/bin/npm
+    # && echo 'export PATH=/usr/local/node/bin:$PATH' > /etc/profile.d/node.sh \
+    # && source /etc/profile.d/node.sh
 
 EXPOSE 80
 
