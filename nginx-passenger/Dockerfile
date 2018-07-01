@@ -63,7 +63,7 @@ RUN yum -y install gcc gcc-c++ make \
     && cd .. \
     && rm -rf "nginx-${NGINX_VERSION}" "nginx-${NGINX_VERSION}.tar.gz" \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
-    && source /etc/profile.d/nginx.sh \
+    && source /etc/profile.d/nginx.sh
 
 EXPOSE 80
 
