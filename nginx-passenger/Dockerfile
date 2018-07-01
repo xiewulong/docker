@@ -5,13 +5,11 @@ ENV RUBY_VERSION 2.5.1
 ENV PASSENGER_VERSION 5.3.3
 ENV NGINX_VERSION 1.14.0
 
-RUN cd \
-    \
-    && yum -y install gcc gcc-c++ make wget \
-                      curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
+RUN yum -y install gcc gcc-c++ make \
+                   curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
     && yum clean all \
     \
-    && wget -c "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \
+    && curl --compressed -fLO "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \
     && tar zxvf "ruby-${RUBY_VERSION}.tar.gz" \
     && cd "ruby-${RUBY_VERSION}" \
     && ./configure  --prefix=/usr/local/ruby \
@@ -21,19 +19,17 @@ RUN cd \
     && echo 'export PATH=/usr/local/ruby/bin:$PATH' > /etc/profile.d/ruby.sh \
     && source /etc/profile.d/ruby.sh \
     \
-    && wget -c "http://s3.amazonaws.com/phusion-passenger/releases/passenger-${PASSENGER_VERSION}.tar.gz" \
+    && curl --compressed -fLO "http://s3.amazonaws.com/phusion-passenger/releases/passenger-${PASSENGER_VERSION}.tar.gz" \
     && tar zxvf "passenger-${PASSENGER_VERSION}.tar.gz" \
     && mv "passenger-${PASSENGER_VERSION}" /usr/local/passenger \
     && rm -rf "passenger-${PASSENGER_VERSION}.tar.gz" \
     && echo 'export PATH=/usr/local/passenger/bin:$PATH' > /etc/profile.d/passenger.sh \
     && source /etc/profile.d/passenger.sh \
     \
-    && wget -c "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
+    && curl --compressed -fLO "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
     && tar zxvf "nginx-${NGINX_VERSION}.tar.gz" \
     && cd "nginx-${NGINX_VERSION}" \
     && ./configure  --prefix=/usr/local/nginx \
-                    --user=www \
-                    --group=www \
                     --with-http_ssl_module \
                     --with-http_realip_module \
                     --with-http_addition_module \
@@ -71,8 +67,6 @@ RUN cd \
 
 EXPOSE 80
 
-STOPSIGNAL SIGTERM
-
-VOLUME ["/home/www/app"]
-ENTRYPOINT []
-CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;", "-c", "/home/www/app/nginx.conf"]
+VOLUME ["/app"]
+# ENTRYPOINT []
+CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;", "-c", "/app/nginx.conf"]
