@@ -3,6 +3,8 @@ docker-compose.yaml
 docker-compose.yml
 
 # Directories
+cnpmjs/cnpmjs.config.js
+cnpmjs/data
 jenkins/
 mariadb/
 mongo/

@@ -9,8 +9,9 @@ RUN curl --compressed -fLO "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NOD
     && ln -sf /usr/local/node/bin/node /usr/local/bin/node \
     && ln -sf /usr/local/node/bin/npm /usr/local/bin/npm
 
-EXPOSE 80
-
 # VOLUME []
+
 # ENTRYPOINT []
-CMD ["/usr/local/node/bin/node"]
+
+EXPOSE 80
+CMD ["/usr/local/bin/node"]

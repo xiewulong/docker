@@ -1,0 +1,20 @@
+cnpmjs:
+  container_name: cnpmjs
+  image: xiewulong/cnpmjs:latest
+  restart: unless-stopped
+  ports:
+    - 7001
+    - 7002
+  volumes:
+    - ./cnpmjs/cnpmjs.config.js:/app/config/cnpmjs.config.js
+    - ./cnpmjs/data:/app/data
+  environment:
+    DATABASE_DIALECT: mysql
+    DATABASE_POOL_MAX_CONNECTIONS: 10
+    DATABASE_POOL_MIN_CONNECTIONS: 10
+    DATABASE_POOL_MAX_IDLE_TIME: 30000
+    DATABASE_HOST: 127.0.0.1
+    DATABASE_PORT: 3306
+    DATABASE_USERNAME: root
+    DATABASE_PASSWORD:
+    DATABASE_DB: cnpmjs
