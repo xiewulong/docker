@@ -10,15 +10,18 @@ const path = require('path');
 
 const config_more = fs.existsSync(`${__dirname}/cnpmjs.config.js`) && require('./cnpmjs.config.js') || {};
 
+delete config_more.bindingHost;
 delete config_more.dataDir;
 delete config_more.database;
 delete config_more.logdir;
+delete config_more.registryPort;
 delete config_more.uploadDir;
 delete config_more.version;
+delete config_more.webPort;
 
 const data_dir = path.join(`${path.dirname(__dirname)}/data`);
 
-module.exports = Object.merge({
+module.exports = Object.assign({
   dataDir: data_dir,
 
   /*
