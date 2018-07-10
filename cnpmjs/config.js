@@ -21,6 +21,14 @@ const data_dir = path.join(`${path.dirname(__dirname)}/data`);
 module.exports = Object.merge({
   dataDir: data_dir,
 
+  /*
+   * server configure
+   */
+
+  registryPort: 7001,
+  webPort: 7002,
+  bindingHost: '0.0.0.0', // binding on 0.0.0.0 for outside of container access
+
   // log dir name
   logdir: path.join(data_dir, 'logs'),
   // update file template dir
