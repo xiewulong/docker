@@ -15,5 +15,4 @@ RUN set -ex \
 
 # ENTRYPOINT []
 
-EXPOSE 80
 CMD ["/usr/local/bin/node"]
