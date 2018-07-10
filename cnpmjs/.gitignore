@@ -1,0 +1,5 @@
+*
+!.gitignore
+!config.js
+!docker-entrypoint.sh
+!Dockerfile

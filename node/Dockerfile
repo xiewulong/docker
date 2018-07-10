@@ -2,7 +2,9 @@ FROM centos:latest
 
 ENV NODE_VERSION 8.11.3
 
-RUN curl --compressed -fLO "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" \
+RUN set -ex \
+		\
+    && curl --compressed -fLO "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz" \
     && tar xvf "node-v${NODE_VERSION}-linux-x64.tar.xz" \
     && mv "node-v${NODE_VERSION}-linux-x64" /usr/local/node \
     && rm -rf "node-v${NODE_VERSION}-linux-x64.tar.xz" \

@@ -5,8 +5,10 @@ ENV RUBY_VERSION 2.5.1
 ENV PASSENGER_VERSION 5.3.3
 ENV NGINX_VERSION 1.14.0
 
-RUN yum -y install gcc gcc-c++ make \
-                   curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
+RUN set -ex \
+		\
+    && yum -y install gcc gcc-c++ make \
+                      curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
     && yum clean all \
     \
     && curl --compressed -fLO "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \

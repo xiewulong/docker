@@ -1,15 +1,10 @@
 #!/bin/bash
 
-echo 'Hello world' >> '/app/config/test.out'
-ls -l /app/config
-cat /app/config/test.out
+set -ex
 
-echo $DATABASE_DIALECT
-echo $DATABASE_POOL_MAX_CONNECTIONS
-echo $DATABASE_POOL_MIN_CONNECTIONS
-echo $DATABASE_POOL_MAX_IDLE_TIME
-echo $DATABASE_HOST
-echo $DATABASE_PORT
-echo $DATABASE_USERNAME
-echo $DATABASE_PASSWORD
-echo $DATABASE_DB
+MYSQL="mysql --host=$DATABASE_HOST --port=$DATABASE_PORT --user=$DATABASE_USERNAME --password=$DATABASE_PASSWORD"
+if [ -z `$MYSQL -e 'SHOW DATABASES;' | grep -o "^$DATABASE_DB$"` ]; then
+  $MYSQL -e "CREATE DATABASE $DATABASE_DB;USE $DATABASE_DB;SOURCE /app/docs/db.sql;"
+fi
+
+$@
