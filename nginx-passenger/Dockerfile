@@ -1,36 +1,35 @@
 FROM xiewulong/node:latest
 
-ENV RUBY_MAJOR 2.5
 ENV RUBY_VERSION 2.5.1
 ENV PASSENGER_VERSION 5.3.3
 ENV NGINX_VERSION 1.14.0
 
 RUN set -ex \
-		\
+    \
     && yum -y install gcc gcc-c++ make \
                       curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
     && yum clean all \
     \
-    && curl --compressed -fLO "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR}/ruby-${RUBY_VERSION}.tar.gz" \
-    && tar zxvf "ruby-${RUBY_VERSION}.tar.gz" \
-    && cd "ruby-${RUBY_VERSION}" \
+    && curl --compressed -fLO "https://cache.ruby-lang.org/pub/ruby/${RUBY_VERSION%.*}/ruby-$RUBY_VERSION.tar.gz" \
+    && tar zxvf "ruby-$RUBY_VERSION.tar.gz" \
+    && cd "ruby-$RUBY_VERSION" \
     && ./configure  --prefix=/usr/local/ruby \
     && make && make install \
     && cd .. \
-    && rm -rf "ruby-${RUBY_VERSION}" "ruby-${RUBY_VERSION}.tar.gz" \
+    && rm -rf "ruby-$RUBY_VERSION" "ruby-$RUBY_VERSION.tar.gz" \
     && echo 'export PATH=/usr/local/ruby/bin:$PATH' > /etc/profile.d/ruby.sh \
     && source /etc/profile.d/ruby.sh \
     \
-    && curl --compressed -fLO "http://s3.amazonaws.com/phusion-passenger/releases/passenger-${PASSENGER_VERSION}.tar.gz" \
-    && tar zxvf "passenger-${PASSENGER_VERSION}.tar.gz" \
-    && mv "passenger-${PASSENGER_VERSION}" /usr/local/passenger \
-    && rm -rf "passenger-${PASSENGER_VERSION}.tar.gz" \
+    && curl --compressed -fLO "http://s3.amazonaws.com/phusion-passenger/releases/passenger-$PASSENGER_VERSION.tar.gz" \
+    && tar zxvf "passenger-$PASSENGER_VERSION.tar.gz" \
+    && mv "passenger-$PASSENGER_VERSION" /usr/local/passenger \
+    && rm -rf "passenger-$PASSENGER_VERSION.tar.gz" \
     && echo 'export PATH=/usr/local/passenger/bin:$PATH' > /etc/profile.d/passenger.sh \
     && source /etc/profile.d/passenger.sh \
     \
-    && curl --compressed -fLO "http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
-    && tar zxvf "nginx-${NGINX_VERSION}.tar.gz" \
-    && cd "nginx-${NGINX_VERSION}" \
+    && curl --compressed -fLO "http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz" \
+    && tar zxvf "nginx-$NGINX_VERSION.tar.gz" \
+    && cd "nginx-$NGINX_VERSION" \
     && ./configure  --prefix=/usr/local/nginx \
                     --with-http_ssl_module \
                     --with-http_realip_module \
@@ -60,10 +59,10 @@ RUN set -ex \
                     --with-compat \
                     --with-file-aio \
                     --with-http_v2_module \
-                    --add-dynamic-module=`/usr/local/passenger/bin/passenger-config --nginx-addon-dir` \
+                    --add-dynamic-module=`passenger-config --nginx-addon-dir` \
     && make && make install \
     && cd .. \
-    && rm -rf "nginx-${NGINX_VERSION}" "nginx-${NGINX_VERSION}.tar.gz" \
+    && rm -rf "nginx-$NGINX_VERSION" "nginx-$NGINX_VERSION.tar.gz" \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
     && source /etc/profile.d/nginx.sh
 
