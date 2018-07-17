@@ -1,0 +1,11 @@
+logstash:
+  container_name: logstash
+  image: logstash:latest
+  restart: unless-stopped
+  ports:
+    - 5601
+  environment:
+    ELASTICSEARCH_URL: http://some-elasticsearch:9200
+  volumes:
+    - ./logstash:/config-dir
+  command: -e 'input { stdin { } } output { stdout { } }' -f /config-dir/logstash.conf

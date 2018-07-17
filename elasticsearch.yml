@@ -1,0 +1,11 @@
+elasticsearch:
+  container_name: elasticsearch
+  image: elasticsearch:latest
+  restart: unless-stopped
+  ports:
+    - 9200
+    - 9300
+  volumes:
+    - ./elasticsearch/config:/usr/share/elasticsearch/config
+    - ./elasticsearch/data:/usr/share/elasticsearch/data
+  command: -Des.node.name="TestNode" -Etransport.host=0.0.0.0 -Ediscovery.zen.minimum_master_nodes=1
