@@ -1,9 +1,15 @@
 kibana:
   container_name: kibana
-  image: kibana:latest
+  image: docker.elastic.co/kibana/kibana:6.3.1
+  # image: kibana:latest
   restart: unless-stopped
   ports:
     - 5601
   environment:
     ELASTICSEARCH_URL: http://some-elasticsearch:9200
+    KIBANA_DEFAULTAPPID:
+    SERVER_NAME:
+    XPACK_MONITORING_ENABLED:
+  volumes:
+    - ./kibana/config:/usr/share/kibana/config
   command: --plugins /somewhere/else

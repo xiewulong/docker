@@ -8,7 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const config_more = fs.existsSync(`${__dirname}/cnpmjs.config.js`) && require('./cnpmjs.config.js') || {};
+const config_more = fs.existsSync(`${__dirname}/cnpmjs.conf.js`) && require('./cnpmjs.conf.js') || {};
 
 delete config_more.bindingHost;
 delete config_more.dataDir;

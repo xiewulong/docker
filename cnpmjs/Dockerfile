@@ -18,7 +18,7 @@ RUN set -ex \
 
 
 COPY config.js /app/config/
-VOLUME ["/app/config/cnpmjs.config.js", "/app/data"]
+VOLUME ["/app/config/cnpmjs.conf.js", "/app/data"]
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]

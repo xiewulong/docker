@@ -2,9 +2,7 @@ filebeat:
   container_name: filebeat
   image: docker.elastic.co/beats/filebeat:6.3.1
   restart: unless-stopped
-  ports:
-    - 9200
-    - 9300
   volumes:
-    - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-  command:
+    - ./filebeat/data:/usr/share/filebeat/data #777
+    - ./filebeat/filebeat.conf.yml:/usr/share/filebeat/filebeat.yml #644
+    - ./filebeat/logs:/usr/share/filebeat/logs #777

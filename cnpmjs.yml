@@ -6,7 +6,7 @@ cnpmjs:
     - 7001
     - 7002
   volumes:
-    - ./cnpmjs/cnpmjs.config.js:/app/config/cnpmjs.config.js
+    - ./cnpmjs/cnpmjs.conf.js:/app/config/cnpmjs.conf.js
     - ./cnpmjs/data:/app/data
   environment:
     DATABASE_DIALECT: mysql
