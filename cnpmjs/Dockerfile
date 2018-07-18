@@ -16,9 +16,9 @@ RUN set -ex \
     && npm i --build-from-source --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org --unsafe-perm \
     && npm i --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org oss-cnpm
 
-
 COPY config.js /app/config/
-VOLUME ["/app/config/cnpmjs.conf.js", "/app/data"]
+
+VOLUME ["/app/data"]
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]

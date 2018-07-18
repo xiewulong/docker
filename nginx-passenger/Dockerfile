@@ -66,8 +66,7 @@ RUN set -ex \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
     && source /etc/profile.d/nginx.sh
 
-
-VOLUME ["/app"]
+# VOLUME []
 
 # ENTRYPOINT []
 
