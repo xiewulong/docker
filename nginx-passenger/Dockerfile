@@ -71,4 +71,4 @@ RUN set -ex \
 # ENTRYPOINT []
 
 EXPOSE 80
-CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;", "-c", "/app/nginx.conf"]
+CMD ["/usr/local/nginx/sbin/nginx", "-c", "/app/nginx.conf", "-g", "daemon off;"]

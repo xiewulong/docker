@@ -1,7 +1,8 @@
 #user  nobody;
 worker_processes  1;
 
-error_log   /home/www/app/log/nginx.log;
+error_log   stderr;
+#error_log   logs/error.log;
 #error_log   logs/error.log  notice;
 #error_log   logs/error.log  info;
 
