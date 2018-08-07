@@ -1,13 +1,13 @@
 FROM xiewulong/node:latest
 
 ENV RUBY_VERSION 2.5.1
-ENV PASSENGER_VERSION 5.3.3
+ENV PASSENGER_VERSION 5.3.4
 ENV NGINX_VERSION 1.14.0
 
 RUN set -ex \
     \
-    && yum -y install gcc gcc-c++ make \
-                      curl-devel gd-devel GeoIP-devel libxslt-devel openssl-devel pcre-devel \
+    && yum -y install ca-certificates gcc gcc-c++ make \
+                      bison-devel bzip2-devel curl-devel gd-devel GeoIP-devel ImageMagick-devel libcurl-devel libxml2-devel libxslt-devel ncurses-devel openssl-devel pcre-devel readline-devel zlib-devel \
     && yum clean all \
     \
     && curl --compressed -fLO "https://cache.ruby-lang.org/pub/ruby/${RUBY_VERSION%.*}/ruby-$RUBY_VERSION.tar.gz" \
@@ -65,6 +65,8 @@ RUN set -ex \
     && rm -rf "nginx-$NGINX_VERSION" "nginx-$NGINX_VERSION.tar.gz" \
     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
     && source /etc/profile.d/nginx.sh
+
+WORKDIR /app
 
 # VOLUME []
 

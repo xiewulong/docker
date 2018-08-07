@@ -2,7 +2,7 @@
 worker_processes  1;
 
 error_log   stderr;
-#error_log   logs/error.log;
+error_log   /path/to/app/log/nginx.log;
 #error_log   logs/error.log  notice;
 #error_log   logs/error.log  info;
 
@@ -10,12 +10,10 @@ error_log   stderr;
 
 load_module   /usr/local/nginx/modules/ngx_http_passenger_module.so;
 
-
 events {
   use                 epoll;
   worker_connections  1024;
 }
-
 
 http {
   include       /usr/local/nginx/conf/mime.types;
@@ -25,7 +23,7 @@ http {
                     '$status $body_bytes_sent "$http_referer" '
                     '"$http_user_agent" "$http_x_forwarded_for"';
 
-  access_log  /home/www/app/log/nginx.log  main;
+  access_log  /path/to/app/log/nginx.log  main;
 
   sendfile    on;
   #tcp_nopush  on;
@@ -50,7 +48,7 @@ http {
     listen        80 default_server;
 
     server_name   localhost _;
-    root          /home/www/app/public;
+    root          /path/to/app/public;
     index         index.html index.htm;
 
     passenger_enabled         on;
@@ -65,7 +63,5 @@ http {
     location ~ /\.(ht|svn|git) {
       deny all;
     }
-
   }
-
 }
