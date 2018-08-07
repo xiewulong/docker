@@ -7,7 +7,7 @@ ENV NGINX_VERSION 1.14.0
 RUN set -ex \
     \
     && yum -y install ca-certificates gcc gcc-c++ make \
-                      bison-devel bzip2-devel curl-devel gd-devel GeoIP-devel ImageMagick-devel libcurl-devel libxml2-devel libxslt-devel ncurses-devel openssl-devel pcre-devel readline-devel zlib-devel \
+                      bison-devel bzip2-devel curl-devel gdbm-devel gd-devel GeoIP-devel glib2-devel glibc-devel ImageMagick-devel libcurl-devel libxml2-devel libxslt-devel ncurses-devel openssl-devel pcre-devel readline-devel zlib-devel \
     && yum clean all \
     \
     && curl --compressed -fLO "https://cache.ruby-lang.org/pub/ruby/${RUBY_VERSION%.*}/ruby-$RUBY_VERSION.tar.gz" \
