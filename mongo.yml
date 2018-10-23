@@ -6,5 +6,9 @@ mongo:
     - 27017
   volumes:
     - ./mongo/data:/data/db
-    - ./mongo/mongod.conf:/etc/mongod.conf
-  command: --config /etc/mongod.conf
+  #   - ./mongo/mongod.conf:/etc/mongod.conf
+  # command: --config /etc/mongod.conf
+  environment:
+    # MONGO_INITDB_DATABASE: test
+    MONGO_INITDB_ROOT_USERNAME: root
+    MONGO_INITDB_ROOT_PASSWORD: root
