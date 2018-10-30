@@ -51,6 +51,20 @@ spec:
       # restartPolicy: Always
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: filebeat-pvc
+spec:
+  accessModes:
+    # - ReadOnlyMany
+    # - ReadWriteMany
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+  storageClassName: storage-class-name
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: elk
