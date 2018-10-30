@@ -7,9 +7,9 @@ services:
     image: docker.elastic.co/beats/filebeat:6.3.1
     restart: unless-stopped
     volumes:
-      - ./filebeat/data:/usr/share/filebeat/data #777
-      - ./filebeat/filebeat.conf.yml:/usr/share/filebeat/filebeat.yml #644
-      - ./filebeat/logs:/usr/share/filebeat/logs #777
+      - ./filebeat/data:/usr/share/filebeat/data # 777
+      - ./filebeat/filebeat.conf.yml:/usr/share/filebeat/filebeat.yml # 644
+      - ./filebeat/logs:/usr/share/filebeat/logs # 777
       - volume_log:/usr/share/filebeat/log
   kibana:
     image: kibana:latest

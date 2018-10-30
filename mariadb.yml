@@ -4,10 +4,10 @@ mariadb:
   restart: unless-stopped
   ports:
     - 3306
-  volumes:
-    - ./mariadb/data:/var/lib/mysql
-    - ./mariadb/conf.d:/etc/mysql/conf.d
   # command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  volumes:
+    - ./mariadb/conf.d:/etc/mysql/conf.d
+    - ./mariadb/data:/var/lib/mysql
   environment:
     MYSQL_ALLOW_EMPTY_PASSWORD: no
     MYSQL_RANDOM_ROOT_PASSWORD: no
@@ -16,3 +16,46 @@ mariadb:
     MYSQL_DATABASE: app
     MYSQL_USER: app_user
     MYSQL_PASSWORD: app_password
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mariadb
+  labels:
+    type: mariadb
+spec:
+  containers:
+    - name: mariadb
+      image: mariadb:latest
+      # imagePullPolicy: Always
+      ports:
+        - containerPort: 3306
+      # command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      env:
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          value: no
+        - name: MYSQL_RANDOM_ROOT_PASSWORD
+          value: no
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        - name: MYSQL_ROOT_HOST
+          value: '%'
+        - name: MYSQL_DATABASE
+          value: app
+        - name: MYSQL_USER
+          value: app_user
+        - name: MYSQL_PASSWORD
+          value: app_password
+      volumeMounts:
+        - name: config
+          mountPath: /etc/mysql/conf.d
+        - name: data
+          mountPath: /var/lib/mysql
+  volumes:
+    - name: config
+      hostPath:
+        path: ./mariadb/conf.d
+    - name: data
+      hostPath:
+        path: ./mariadb/data
+  # restartPolicy: Always

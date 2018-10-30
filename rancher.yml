@@ -5,9 +5,9 @@ rancher:
   ports:
     - 80
     - 443
+  command: --acme-domain rancher.mydomain.com
   volumes:
     - ./rancher/cacerts.pem:/etc/rancher/ssl/cacerts.pem
     - ./rancher/fullchain.pem:/etc/rancher/ssl/cert.pem
     - ./rancher/privkey.pem:/etc/rancher/ssl/key.pem
     - ./rancher/data:/var/lib/rancher
-  command: --acme-domain rancher.mydomain.com

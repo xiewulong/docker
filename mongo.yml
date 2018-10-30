@@ -4,10 +4,10 @@ mongo:
   restart: unless-stopped
   ports:
     - 27017
+  # command: --config /etc/mongod.conf
   volumes:
     - ./mongo/data:/data/db
-  #   - ./mongo/mongod.conf:/etc/mongod.conf
-  # command: --config /etc/mongod.conf
+    # - ./mongo/mongod.conf:/etc/mongod.conf
   environment:
     # MONGO_INITDB_DATABASE: test
     MONGO_INITDB_ROOT_USERNAME: root

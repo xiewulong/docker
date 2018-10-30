@@ -6,6 +6,7 @@ elasticsearch:
   ports:
     - 9200
     - 9300
+  command: -Des.node.name="TestNode" -Ecluster.name=mynewclustername -Ediscovery.zen.minimum_master_nodes=1 -Etransport.host=0.0.0.0
   environment:
     - bootstrap.memory_lock=true
     - cluster.name=docker-cluster
@@ -13,4 +14,39 @@ elasticsearch:
   volumes:
     - ./elasticsearch/config:/usr/share/elasticsearch/config
     - ./elasticsearch/data:/usr/share/elasticsearch/data
-  command: -Des.node.name="TestNode" -Ecluster.name=mynewclustername -Ediscovery.zen.minimum_master_nodes=1 -Etransport.host=0.0.0.0
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: elasticsearch
+  labels:
+    type: elasticsearch
+spec:
+  containers:
+    - name: elasticsearch
+      image: elasticsearch:latest
+      # imagePullPolicy: Always
+      ports:
+        - containerPort: 9200
+        - containerPort: 9300
+      command: --plugins /somewhere/else
+      env:
+        - name: bootstrap.memory_lock
+          value: 'true'
+        - name: cluster.name
+          value: docker-cluster
+        - name: ES_JAVA_OPTS
+          value: -Xms512m -Xmx512m
+      volumeMounts:
+        - name: config
+          mountPath: /usr/share/elasticsearch/config
+        - name: data
+          mountPath: /usr/share/elasticsearch/data
+  volumes:
+    - name: config
+      hostPath:
+        path: ./elasticsearch/config
+    - name: data
+      hostPath:
+        path: ./elasticsearch/data
+  # restartPolicy: Always
