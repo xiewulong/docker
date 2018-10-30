@@ -6,6 +6,6 @@ rancher_server:
     - 3306
     - 8080
     - 9345
+  command: --db-host localhost --db-port 3306 --db-user cattle --db-pass cattle --db-name cattle --advertise-address <IP_of_the_Node> --advertise-http-port 8080
   volumes:
     - ./rancher/data:/var/lib/mysql
-  command: --db-host localhost --db-port 3306 --db-user cattle --db-pass cattle --db-name cattle --advertise-address <IP_of_the_Node> --advertise-http-port 8080

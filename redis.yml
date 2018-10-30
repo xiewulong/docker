@@ -8,3 +8,31 @@ redis:
   volumes:
     - ./redis/data:/data
     - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+  labels:
+    type: redis
+spec:
+  containers:
+    - name: redis
+      image: redis:latest
+      # imagePullPolicy: Always
+      ports:
+        - containerPort: 6379
+      command: redis-server /usr/local/etc/redis/redis.conf
+      volumeMounts:
+        - name: config
+          mountPath: /usr/local/etc/redis/redis.conf
+        - name: data
+          mountPath: /data
+  volumes:
+    - name: config
+      hostPath:
+        path: ./redis/redis.conf
+    - name: data
+      hostPath:
+        path: ./redis/data
+  # restartPolicy: Always
