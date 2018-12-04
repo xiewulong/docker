@@ -1,0 +1,11 @@
+nextcloud:
+  container_name: nextcloud
+  image: nextcloud:stable-fpm-alpine
+  restart: unless-stopped
+  ports:
+    - 80
+  volumes:
+    - ./nextcloud/html:/var/www/html
+    - ./nextcloud/data:/var/lib/mysql
+  # links:
+  #   - db
