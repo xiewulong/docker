@@ -13,15 +13,15 @@ RUN set -ex \
     && rm -rf "$CNPMJS_VERSION.tar.gz" \
     \
     && cd /app \
-    && npm i --build-from-source --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org --unsafe-perm \
-    && npm i --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org oss-cnpm
+    && /usr/local/node/bin/npm i --build-from-source --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org --unsafe-perm \
+    && /usr/local/node/bin/npm i --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org oss-cnpm
 
 COPY config.js /app/config/
 
-VOLUME ["/app/data"]
+VOLUME [ "/app/data" ]
 
 COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT [ "docker-entrypoint.sh" ]
 
 EXPOSE 7001 7002
-CMD ["/usr/local/bin/node", "/app/dispatch.js"]
+CMD [ "/usr/local/node/bin/node", "/app/dispatch.js" ]
