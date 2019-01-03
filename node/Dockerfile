@@ -1,15 +1,15 @@
 FROM centos:latest
 
 ENV DEFAULT_INSTALLATION_MODE Y
-ENV COMMON_LIBRARY Y
 ENV NODE Y
 ENV NODE_VERSION 10.15.0
 
 RUN set -ex \
     \
-    && curl --compressed -fLs -odeploy-master.tar.gz "https://github.com/xiewulong/deploy/archive/master.tar.gz" \
+    && curl --compressed -fLs -o deploy-master.tar.gz https://github.com/xiewulong/deploy/archive/master.tar.gz \
     && tar zxvf deploy-master.tar.gz \
-    && ./deploy-master/centos.sh
+    && ./deploy-master/centos.sh \
+    && rm -rf deploy-master deploy-master.tar.gz
     # \
     # && curl --compressed -fLO "https://nodejs.org/dist/v${NODE_VERSION}/node-v$NODE_VERSION-linux-x64.tar.xz" \
     # && tar xvf "node-v$NODE_VERSION-linux-x64.tar.xz" \
