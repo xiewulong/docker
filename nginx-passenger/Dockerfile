@@ -1,9 +1,5 @@
 FROM xiewulong/node:latest
 
-# ENV RUBY_VERSION 2.5.1
-# ENV PASSENGER_VERSION 5.3.4
-# ENV NGINX_VERSION 1.14.0
-
 ENV DEFAULT_INSTALLATION_MODE Y
 ENV COMMON_LIBRARY Y
 ENV NGINX Y
@@ -16,68 +12,6 @@ RUN curl --compressed -fLs -o deploy-master.tar.gz https://github.com/xiewulong/
     && tar zxvf deploy-master.tar.gz \
     && ./deploy-master/centos.sh \
     && rm -rf deploy-master deploy-master.tar.gz
-
-# RUN set -ex \
-#     \
-#     && yum -y install ca-certificates gcc gcc-c++ make \
-#                       bison-devel bzip2-devel curl-devel gdbm-devel gd-devel GeoIP-devel glib2-devel glibc-devel ImageMagick-devel libcurl-devel libxml2-devel libxslt-devel ncurses-devel openssl-devel pcre-devel readline-devel zlib-devel \
-#     && yum clean all \
-#     \
-#     && curl --compressed -fLO "https://cache.ruby-lang.org/pub/ruby/${RUBY_VERSION%.*}/ruby-$RUBY_VERSION.tar.gz" \
-#     && tar zxvf "ruby-$RUBY_VERSION.tar.gz" \
-#     && cd "ruby-$RUBY_VERSION" \
-#     && ./configure  --prefix=/usr/local/ruby \
-#     && make && make install \
-#     && cd .. \
-#     && rm -rf "ruby-$RUBY_VERSION" "ruby-$RUBY_VERSION.tar.gz" \
-#     && echo 'export PATH=/usr/local/ruby/bin:$PATH' > /etc/profile.d/ruby.sh \
-#     && source /etc/profile.d/ruby.sh \
-#     \
-#     && curl --compressed -fLO "http://s3.amazonaws.com/phusion-passenger/releases/passenger-$PASSENGER_VERSION.tar.gz" \
-#     && tar zxvf "passenger-$PASSENGER_VERSION.tar.gz" \
-#     && mv "passenger-$PASSENGER_VERSION" /usr/local/passenger \
-#     && rm -rf "passenger-$PASSENGER_VERSION.tar.gz" \
-#     && echo 'export PATH=/usr/local/passenger/bin:$PATH' > /etc/profile.d/passenger.sh \
-#     && source /etc/profile.d/passenger.sh \
-#     \
-#     && curl --compressed -fLO "http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz" \
-#     && tar zxvf "nginx-$NGINX_VERSION.tar.gz" \
-#     && cd "nginx-$NGINX_VERSION" \
-#     && ./configure  --prefix=/usr/local/nginx \
-#                     --with-http_ssl_module \
-#                     --with-http_realip_module \
-#                     --with-http_addition_module \
-#                     --with-http_sub_module \
-#                     --with-http_dav_module \
-#                     --with-http_flv_module \
-#                     --with-http_mp4_module \
-#                     --with-http_gunzip_module \
-#                     --with-http_gzip_static_module \
-#                     --with-http_random_index_module \
-#                     --with-http_secure_link_module \
-#                     --with-http_stub_status_module \
-#                     --with-http_auth_request_module \
-#                     --with-http_xslt_module=dynamic \
-#                     --with-http_image_filter_module=dynamic \
-#                     --with-http_geoip_module=dynamic \
-#                     --with-threads \
-#                     --with-stream \
-#                     --with-stream_ssl_module \
-#                     --with-stream_ssl_preread_module \
-#                     --with-stream_realip_module \
-#                     --with-stream_geoip_module=dynamic \
-#                     --with-http_slice_module \
-#                     --with-mail \
-#                     --with-mail_ssl_module \
-#                     --with-compat \
-#                     --with-file-aio \
-#                     --with-http_v2_module \
-#                     --add-dynamic-module=`passenger-config --nginx-addon-dir` \
-#     && make && make install \
-#     && cd .. \
-#     && rm -rf "nginx-$NGINX_VERSION" "nginx-$NGINX_VERSION.tar.gz" \
-#     && echo 'export PATH=/usr/local/nginx/sbin:$PATH' > /etc/profile.d/nginx.sh \
-#     && source /etc/profile.d/nginx.sh
 
 WORKDIR /app
 
