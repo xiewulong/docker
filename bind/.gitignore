@@ -1,6 +1,5 @@
 *
 !.gitignore
-!config.js
-!docker-entrypoint.sh
+!named.conf
 !Dockerfile
 !README.md
