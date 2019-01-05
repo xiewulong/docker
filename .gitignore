@@ -10,6 +10,7 @@ kibana/
 logstash/
 mariadb/
 mongo/
+named/
 rancher/
 redis/
 registry/

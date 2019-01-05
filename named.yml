@@ -1,0 +1,8 @@
+named:
+  container_name: named
+  image: xiewulong/bind:latest
+  restart: unless-stopped
+  ports:
+    - 53
+  volumes:
+    - ./named/named.conf:/etc/named.conf

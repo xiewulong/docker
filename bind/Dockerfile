@@ -14,7 +14,7 @@ RUN set -ex \
 
 COPY named.conf /etc/
 
-VOLUME [ "/var/named" ]
+# VOLUME []
 
 # ENTRYPOINT []
 
