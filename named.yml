@@ -1,9 +1,9 @@
 named:
   container_name: named
-  image: xiewulong/bind:latest
+  image: resystit/bind9:latest
   restart: unless-stopped
   ports:
     - 53/tcp
     - 53/udp
   volumes:
-    - ./named/named.conf:/etc/named.conf
+    - ./named/named.conf:/etc/bind/named.conf
