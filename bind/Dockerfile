@@ -6,9 +6,9 @@ RUN set -ex \
 
 EXPOSE 53 53/udp
 
-VOLUME [ "/var/bind" ]
-
 CMD [ "/usr/sbin/named", "-g" ]
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT [ "docker-entrypoint.sh" ]
+
+COPY named.conf /etc/bind/named.conf

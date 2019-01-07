@@ -8,4 +8,4 @@ named:
   # command: -c /etc/bind/named.conf -u named
   volumes:
     - ./named/named.conf:/etc/bind/named.conf
-    - ./named/data:/var/bind
+    - ./named/files:/var/bind/files
