@@ -1,6 +1,6 @@
 named:
   container_name: named
-  image: resystit/bind9:latest
+  image: xiewulong/bind:latest
   restart: unless-stopped
   ports:
     - 53/tcp
