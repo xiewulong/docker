@@ -13,8 +13,4 @@ RUN set -ex \
     \
     && ln -sf /usr/local/node/bin/node /usr/local/bin/node
 
-# VOLUME []
-
-# ENTRYPOINT []
-
 CMD [ "/usr/local/bin/node" ]

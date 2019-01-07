@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -ex
+set -e
 
 MYSQL="mysql --host=$DATABASE_HOST --port=$DATABASE_PORT --user=$DATABASE_USERNAME --password=$DATABASE_PASSWORD"
 if [ -z `$MYSQL -e 'SHOW DATABASES;' | grep -o "^$DATABASE_DB$"` ]; then

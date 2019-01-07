@@ -16,12 +16,13 @@ RUN set -ex \
     && /usr/local/node/bin/npm i --build-from-source --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org --unsafe-perm \
     && /usr/local/node/bin/npm i --disturl=https://npm.taobao.org/mirrors/node --registry=https://registry.npm.taobao.org oss-cnpm
 
-COPY config.js /app/config/
+EXPOSE 7001 7002
 
 VOLUME [ "/app/data" ]
+
+CMD [ "/usr/local/node/bin/node", "/app/dispatch.js" ]
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
-EXPOSE 7001 7002
-CMD [ "/usr/local/node/bin/node", "/app/dispatch.js" ]
+COPY config.js /app/config/

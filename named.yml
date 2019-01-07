@@ -7,3 +7,4 @@ named:
     - 53/udp
   volumes:
     - ./named/named.conf:/etc/bind/named.conf
+    - ./named/data:/var/bind

@@ -15,11 +15,8 @@ RUN set -ex \
     && ./deploy-master/centos.sh \
     && rm -rf deploy-master deploy-master.tar.gz
 
+EXPOSE 80
+
 WORKDIR /app
 
-# VOLUME []
-
-# ENTRYPOINT []
-
-EXPOSE 80
 CMD [ "/usr/local/nginx/sbin/nginx", "-c", "/app/nginx.conf", "-g", "daemon off;" ]
