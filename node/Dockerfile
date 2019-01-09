@@ -11,6 +11,7 @@ RUN set -ex \
     && ./deploy-master/centos.sh \
     && rm -rf deploy-master deploy-master.tar.gz \
     \
-    && ln -sf /usr/local/node/bin/node /usr/local/bin/node
+    && ln -sf /usr/local/node/bin/node /usr/local/bin/node \
+    && ln -sf /usr/local/node/bin/npm /usr/local/bin/npm
 
 CMD [ "/usr/local/bin/node" ]
