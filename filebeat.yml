@@ -6,6 +6,7 @@ filebeat:
     - ./filebeat/data:/usr/share/filebeat/data # 777
     - ./filebeat/filebeat.conf.yml:/usr/share/filebeat/filebeat.yml # 644
     - ./filebeat/logs:/usr/share/filebeat/logs # 777
+
 ---
 apiVersion: v1
 kind: Pod

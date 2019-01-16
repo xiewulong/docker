@@ -14,6 +14,7 @@ elasticsearch:
   volumes:
     - ./elasticsearch/config:/usr/share/elasticsearch/config
     - ./elasticsearch/data:/usr/share/elasticsearch/data
+
 ---
 apiVersion: v1
 kind: Pod

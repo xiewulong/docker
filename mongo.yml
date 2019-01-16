@@ -12,6 +12,7 @@ mongo:
   volumes:
     - ./mongo/data:/data/db
     # - ./mongo/mongod.conf:/etc/mongod.conf
+
 ---
 apiVersion: v1
 kind: Pod

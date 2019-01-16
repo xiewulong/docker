@@ -13,6 +13,7 @@ kibana:
     # XPACK_MONITORING_ENABLED:
   volumes:
     - ./kibana/config:/usr/share/kibana/config
+
 ---
 apiVersion: v1
 kind: Pod
