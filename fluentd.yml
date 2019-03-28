@@ -1,0 +1,9 @@
+fluentd:
+  container_name: fluentd
+  image: fluent/fluentd:latest
+  restart: unless-stopped
+  ports:
+    - 24224/tcp
+    - 24224/udp
+  volumes:
+    - ./fluentd/log:/fluentd/log
