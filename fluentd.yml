@@ -5,5 +5,7 @@ fluentd:
   ports:
     - 24224/tcp
     - 24224/udp
+  command: -c /fluentd/etc/fluentd.conf
   volumes:
+    - ./fluentd/etc:/fluentd/etc
     - ./fluentd/log:/fluentd/log

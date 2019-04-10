@@ -7,3 +7,8 @@ jenkins:
     - 50000
   volumes:
     - ./jenkins/home:/var/jenkins_home
+  logging:
+    driver: fluentd
+    options:
+      fluentd-address: localhost:24224
+      tag: httpd.access
