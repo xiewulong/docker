@@ -1,6 +1,6 @@
 fluentd:
   container_name: fluentd
-  image: fluent/fluentd:latest
+  image: fluentd:latest
   restart: unless-stopped
   ports:
     - 24224/tcp

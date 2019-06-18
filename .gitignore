@@ -5,6 +5,7 @@ docker-compose.yml
 # Directories
 elasticsearch/
 filebeat/
+fluentd/
 jenkins/
 kibana/
 logstash/
