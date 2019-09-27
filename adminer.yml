@@ -1,0 +1,11 @@
+adminer:
+  container_name: adminer
+  image: adminer:latest
+  restart: unless-stopped
+  ports:
+    - 8080
+    - 9000
+  # environment:
+  #   ADMINER_PLUGINS: tables-filter tinymce
+  #   ADMINER_DESIGN: nette
+  #   ADMINER_DEFAULT_SERVER: localhost
