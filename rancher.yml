@@ -1,6 +1,6 @@
 rancher:
   container_name: rancher
-  image: rancher/rancher:stable
+  image: rancher/rancher:${RANCHER_DOCKER_TAG_NAME:-stable}
   restart: unless-stopped
   command: --acme-domain rancher.mydomain.com
   ports:

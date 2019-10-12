@@ -1,6 +1,6 @@
 named:
   container_name: named
-  image: xiewulong/bind:latest
+  image: xiewulong/bind:${NAMED_DOCKER_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 53/tcp

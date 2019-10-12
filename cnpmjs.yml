@@ -1,6 +1,6 @@
 cnpmjs:
   container_name: cnpmjs
-  image: xiewulong/cnpmjs:latest
+  image: xiewulong/cnpmjs:${CNPMJS_DOCKER_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 7001

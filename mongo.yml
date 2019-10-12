@@ -1,6 +1,6 @@
 mongo:
   container_name: mongo
-  image: mongo:latest
+  image: mongo:${MONGO_DOCKER_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 27017

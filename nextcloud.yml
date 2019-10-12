@@ -1,6 +1,6 @@
 nextcloud:
   container_name: nextcloud
-  image: nextcloud:stable
+  image: nextcloud:${NEXTCLOUD_DOCKER_TAG_NAME:-stable}
   restart: unless-stopped
   ports:
     - 80

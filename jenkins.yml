@@ -1,6 +1,6 @@
 jenkins:
   container_name: jenkins
-  image: jenkins:latest
+  image: jenkins:${JENKINS_DOCKER_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 8080

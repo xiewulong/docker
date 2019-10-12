@@ -1,6 +1,6 @@
 registry:
   container_name: registry
-  image: registry:latest
+  image: registry:${REGISTRY_DOCKER_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 5000

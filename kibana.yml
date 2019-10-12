@@ -1,7 +1,7 @@
 kibana:
   container_name: kibana
-  image: docker.elastic.co/kibana/kibana:6.3.1
-  # image: kibana:latest
+  image: docker.elastic.co/kibana/kibana:${KIBANA_DOCKER_TAG_NAME:-6.3.1}
+  # image: kibana:${KIBANA_DOCKER_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 5601

@@ -1,6 +1,6 @@
 redis:
   container_name: redis
-  image: redis:latest
+  image: redis:${REDIS_DOCKER_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 6379

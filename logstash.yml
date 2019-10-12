@@ -1,7 +1,7 @@
 logstash:
   container_name: logstash
-  image: docker.elastic.co/logstash/logstash:6.3.1
-  # image: logstash:latest
+  image: docker.elastic.co/logstash/logstash:${LOGSTASH_DOCKER_TAG_NAME:-6.3.1}
+  # image: logstash:${LOGSTASH_DOCKER_TAG_NAME:-latest}
   restart: unless-stopped
   environment:
     ELASTICSEARCH_URL: http://some-elasticsearch:9200
