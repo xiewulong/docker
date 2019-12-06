@@ -12,6 +12,7 @@ logstash/
 mariadb/
 mongo/
 named/
+postgresql/
 rancher/
 redis/
 registry/
