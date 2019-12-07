@@ -1,7 +1,7 @@
 version: '3'
 services:
   jobmanager:
-    image: flink:${FLINK_DOCKER_TAG_NAME:-latest}
+    image: flink:${FLINK_IMAGE_TAG_NAME:-latest}
     restart: unless-stopped
     expose:
       - 6123
@@ -11,7 +11,7 @@ services:
     environment:
       - JOB_MANAGER_RPC_ADDRESS=jobmanager
   taskmanager:
-    image: flink:${FLINK_DOCKER_TAG_NAME:-latest}
+    image: flink:${FLINK_IMAGE_TAG_NAME:-latest}
     restart: unless-stopped
     expose:
       - 6121

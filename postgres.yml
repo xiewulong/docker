@@ -1,6 +1,6 @@
 postgres:
   container_name: postgres
-  image: postgres:${RANCHER_DOCKER_TAG_NAME:-alpine}
+  image: postgres:${POSTGRES_IMAGE_TAG_NAME:-alpine}
   restart: unless-stopped
   ports:
     - 5432

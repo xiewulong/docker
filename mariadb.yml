@@ -1,6 +1,6 @@
 mariadb:
   container_name: mariadb
-  image: mariadb:${MARIADB_DOCKER_TAG_NAME:-latest}
+  image: mariadb:${MARIADB_IMAGE_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 3306
