@@ -4,7 +4,7 @@ services:
     image: mysql:5.6
     restart: unless-stopped
     ports:
-      - 3306:3306
+      - 3306
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -18,7 +18,7 @@ services:
     image: mongo:${MONGO_IMAGE_TAG_NAME:-latest}
     restart: unless-stopped
     ports:
-      - 27017:27017
+      - 27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
@@ -32,7 +32,7 @@ services:
     image: plantuml/plantuml-server:${PLANTUML_SERVER_IMAGE_TAG_NAME:-latest}
     restart: unless-stopped
     ports:
-      - 61616:8080
+      - 8080
     networks:
       - internet
 
@@ -40,7 +40,7 @@ services:
     image: postgres:${POSTGRES_IMAGE_TAG_NAME:-alpine}
     restart: unless-stopped
     ports:
-      - 5432:5432
+      - 5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -68,8 +68,8 @@ networks:
   intranet:
     name: intranet
 
-volumes:
-  volume_mysql:
-  volume_mongo:
-  volume_postgresql:
-  volume_redis:
+# volumes:
+#   volume_mysql:
+#   volume_mongo:
+#   volume_postgresql:
+#   volume_redis:
