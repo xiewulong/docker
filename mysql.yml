@@ -1,6 +1,6 @@
-mariadb:
-  container_name: mariadb
-  image: mariadb:${MARIADB_IMAGE_TAG_NAME:-latest}
+mysql:
+  container_name: mysql
+  image: mysql:${MYSQL_IMAGE_TAG_NAME:-latest}
   restart: unless-stopped
   ports:
     - 3306
@@ -14,5 +14,5 @@ mariadb:
     MYSQL_USER: app_user
     MYSQL_PASSWORD: app_password
   volumes:
-    - ./mariadb/conf.d:/etc/mysql/conf.d
-    - ./mariadb/data:/var/lib/mysql
+    - ./mysql/conf.d:/etc/mysql/conf.d
+    - ./mysql/data:/var/lib/mysql

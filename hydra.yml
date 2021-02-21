@@ -1,0 +1,44 @@
+hydra:
+  container_name: hydra
+  image: oryd/hydra:${HYDRA_IMAGE_TAG_NAME:-latest}
+  restart: unless-stopped
+  ports:
+    - 4444
+    - 4445
+    - 5555
+  environment:
+    DSN: memory   # ,mysql://root:secret@tcp(mysqld:3306)/mysql?max_conns=20&max_idle_conns=4
+    # OAUTH2_EXPOSE_INTERNAL_ERRORS: 1
+    # LOG_LEVEL: debug
+    # OAUTH2_ACCESS_TOKEN_STRATEGY: jwt
+    OIDC_SUBJECT_IDENTIFIERS_SUPPORTED_TYPES: public,pairwise
+    OIDC_SUBJECT_IDENTIFIERS_PAIRWISE_SALT: youReallyNeedToChangeThis
+    SECRETS_SYSTEM: youReallyNeedToChangeThis
+    # SERVE_ADMIN_CORS_ALLOWED_METHODS: POST,GET,PUT,DELETE
+    # SERVE_ADMIN_CORS_ENABLED: true
+    # SERVE_PUBLIC_CORS_ALLOWED_METHODS: POST,GET,PUT,DELETE
+    # SERVE_PUBLIC_CORS_ENABLED: true
+    URLS_CONSENT: http://127.0.0.1:3000/consent
+    URLS_LOGIN: http://127.0.0.1:3000/login
+    URLS_LOGOUT: http://127.0.0.1:3000/logout
+    URLS_SELF_ISSUER: http://127.0.0.1:4444
+  command: serve all --dangerous-force-http
+  # depends_on:
+  #   - hydra-migrate
+
+hydra-migrate:
+  container_name: hydra-migrate
+  image: oryd/hydra:${HYDRA_IMAGE_TAG_NAME:-latest}
+  restart: on-failure
+  environment:
+    DSN: mysql://root:secret@tcp(mysqld:3306)/mysql?max_conns=20&max_idle_conns=4
+  command: migrate sql -e --yes
+
+# hydra-login-consent-node:
+#   container_name: hydra-login-consent-node
+#   image: oryd/hydra-login-consent-node:latest
+#   restart: unless-stopped
+#   ports:
+#     - 3000
+#   environment:
+#     - HYDRA_ADMIN_URL=http://hydra:4445

@@ -1,21 +1,75 @@
 version: '3.5'
 services:
-  elasticsearch:
-    image: elasticsearch:latest
-    restart: unless-stopped
-  filebeat:
-    image: docker.elastic.co/beats/filebeat:6.3.1
-    restart: unless-stopped
-    volumes:
-      - ./filebeat/data:/usr/share/filebeat/data # 777
-      - ./filebeat/filebeat.conf.yml:/usr/share/filebeat/filebeat.yml # 644
-      - ./filebeat/logs:/usr/share/filebeat/logs # 777
-      - volume_log:/usr/share/filebeat/log
-  kibana:
-    image: kibana:latest
+  mysql:
+    image: mysql:5.6
     restart: unless-stopped
     ports:
-      - 5601:5601
+      - 3306:3306
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      # - volume_mysql:/var/lib/mysql
+    networks:
+      - intranet
+
+  mongo:
+    image: mongo:${MONGO_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./mongo/data:/data/db
+      # - volume_mongo:/data/db
+    networks:
+      - intranet
+
+  plantuml-server:
+    image: plantuml/plantuml-server:${PLANTUML_SERVER_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 61616:8080
+    networks:
+      - internet
+
+  postgres:
+    image: postgres:${POSTGRES_IMAGE_TAG_NAME:-alpine}
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
+      # - volume_postgresql:/var/lib/postgresql/data
+    networks:
+      - intranet
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis/data:/data
+      # - volume_redis:/data
+    networks:
+      - intranet
+
+networks:
+  internet:
+    name: internet
+  intranet:
+    name: intranet
 
 volumes:
-  volume_log:
+  volume_mysql:
+  volume_mongo:
+  volume_postgresql:
+  volume_redis:

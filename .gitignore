@@ -1,18 +1,19 @@
 # Docker compose yaml|yml
-docker-compose.yaml
-docker-compose.yml
+/docker-compose.yaml
+/docker-compose.yml
 
 # Directories
-elasticsearch/
-filebeat/
-fluentd/
-jenkins/
-kibana/
-logstash/
-mariadb/
-mongo/
-named/
-postgresql/
-rancher/
-redis/
-registry/
+/elasticsearch
+/filebeat
+/fiscobcos
+/fluentd
+/jenkins
+/kibana
+/logstash
+/mongo
+/mysql
+/named
+/postgresql
+/rancher
+/redis
+/registry
