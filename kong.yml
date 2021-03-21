@@ -13,7 +13,7 @@ kong:
     KONG_DECLARATIVE_CONFIG: /etc/kong/declarative/kong.yml
     # KONG_LOG_LEVEL: notice
     # KONG_LUA_PACKAGE_PATH: /usr/local/?.lua;;
-    # KONG_PLUGINS: bundled,plugin1,plugin2
+    # KONG_PLUGINS: bundled, plugin1, plugin2
   volumes:
     - ./kong/declarative:/etc/kong/declarative
     # - ./kong/plugins:/usr/local/kong/plugins
