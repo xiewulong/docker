@@ -6,6 +6,6 @@ konga:
     - 1337
   environment:
     DB_ADAPTER: postgres  # 'mongo','postgres','sqlserver' or 'mysql'
-    DB_URI: postgres://postgres:postgres@postgres/postgres?current_schema=public
+    DB_URI: postgres://postgres:postgres@postgres:5432/postgres?current_schema=public
     NODE_ENV: production
     TOKEN_SECRET: Token secret

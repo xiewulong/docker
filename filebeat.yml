@@ -1,8 +1,0 @@
-filebeat:
-  container_name: filebeat
-  image: docker.elastic.co/beats/filebeat:${FILEBEAT_IMAGE_TAG_NAME:-6.3.1}
-  restart: unless-stopped
-  volumes:
-    - ./filebeat/data:/usr/share/filebeat/data # 777
-    - ./filebeat/filebeat.conf.yml:/usr/share/filebeat/filebeat.yml # 644
-    - ./filebeat/logs:/usr/share/filebeat/logs # 777

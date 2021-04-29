@@ -4,12 +4,9 @@
 
 # Directories
 /elasticsearch
-/filebeat
-/fiscobcos
 /fluentd
 /jenkins
 /kibana
-/logstash
 /mongo
 /mysql
 /named
