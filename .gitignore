@@ -10,6 +10,7 @@
 /mongo
 /mysql
 /named
+/nginx
 /postgresql
 /rancher
 /redis
