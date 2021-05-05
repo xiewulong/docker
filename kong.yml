@@ -1,6 +1,6 @@
 kong:
   container_name: kong
-  image: kong:${KONG_IMAGE_TAG_NAME:-latest}
+  image: kong:${KONG_IMAGE_TAG_NAME:-alpine}
   restart: unless-stopped
   ports:
     - 8000
