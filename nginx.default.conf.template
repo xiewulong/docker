@@ -1,3 +1,10 @@
+# gzip                on;
+# gzip_disable        'MSIE [1-6]\.(?!.*SV1)';
+# gzip_types          *;
+# keepalive_timeout   75s;
+server_tokens       off;
+# tcp_nopush          on;
+
 # upstream backend_cluster {
 #   server backend1.example.com       weight=5;
 #   server backend2.example.com:8080;
@@ -12,6 +19,7 @@
 
 server {
   listen        80 default_server;
+  listen        [::]:80 default_server;
   server_name   localhost _;
 
   #listen        443 ssl;
@@ -36,23 +44,9 @@ server {
 
   #error_page    404 /404.html;
 
-  #passenger_enabled        on;
-  #passenger_user           username;
-  #passenger_group          groupname;
-  #passenger_base_uri       /base/uri;
-  #passenger_app_root       /path/to/app/root;
-  #passenger_document_root  /path/to/document/root;
-  #passenger_app_env        production;
-  #passenger_app_type       node;
-  #passenger_startup_file   app.js;
-  #passenger_restart_dir    tmp;
-  #passenger_env_var        DATABASE_HOST     localhost;
-  #passenger_env_var        DATABASE_USERNAME root;
-  #passenger_env_var        DATABASE_PASSWORD root;
-
-  location ~ /\.(ht|svn|git) {
-    deny all;
-  }
+  # location ~ /\.(ht|svn|git) {
+  #   deny all;
+  # }
 
   #location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
   #  try_files   $uri =404;
@@ -107,6 +101,9 @@ server {
   #  proxy_set_header  X-Real-IP         $remote_addr;
   #}
 
-  default_type  text/html;
-  return        200 '';
+  location = /health {
+    charset       utf-8;
+    default_type  application/json;
+    return        204;
+  }
 }
