@@ -1,9 +1,8 @@
-# gzip                on;
-# gzip_disable        'MSIE [1-6]\.(?!.*SV1)';
-# gzip_types          *;
-# keepalive_timeout   75s;
-server_tokens       off;
-# tcp_nopush          on;
+# client_max_body_size  1m;
+# gzip                  on;
+# gzip_disable          'MSIE [1-6]\.(?!.*SV1)';
+# gzip_types            *;
+server_tokens         off;
 
 # upstream backend_cluster {
 #   server backend1.example.com       weight=5;
