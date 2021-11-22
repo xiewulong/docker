@@ -21,7 +21,7 @@ kong:
     # KONG_PG_DATABASE: kong
     # KONG_PG_SCHEMA:
     # KONG_PLUGINS: bundled, plugin1, plugin2
-      KONG_TRUSTED_IPS: 0.0.0.0/0,::/0
+    KONG_TRUSTED_IPS: 0.0.0.0/0,::/0
   volumes:
     - ./kong/declarative:/etc/kong/declarative
     # - ./kong/plugins:/usr/local/kong/plugins
