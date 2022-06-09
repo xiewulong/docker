@@ -1,0 +1,26 @@
+yurls:
+  container_name: yurls
+  image: yurls:${YURLS_IMAGE_TAG_NAME:-fpm-alpine}
+  restart: unless-stopped
+  ports:
+    - 8080
+  environment:
+    YOURLS_DB_HOST: mysql
+    YOURLS_DB_USER: root
+    YOURLS_DB_PASS:
+    YOURLS_DB_NAME: yourls
+    YOURLS_DB_PREFIX: yourls_
+
+    YOURLS_SITE: https://your-own-domain-here.com
+    # YOURLS_LANG: zh_CN
+    YOURLS_PRIVATE: true
+    YOURLS_UNIQUE_URLS: true
+    # YOURLS_COOKIEKEY: modify this text with something random
+    YOURLS_USER: admin
+    YOURLS_PASS: admin
+
+    YOURLS_PRIVATE_API: true  # ???
+    YOURLS_URL_CONVERT: 36  # or 62
+
+    YOURLS_DEBUG: false
+  volumes: []
