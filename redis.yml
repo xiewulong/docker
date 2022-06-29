@@ -1,10 +1,12 @@
-redis:
-  container_name: redis
-  image: redis:${REDIS_IMAGE_TAG_NAME:-alpine}
-  restart: unless-stopped
-  ports:
-    - 6379
-  command: redis-server /usr/local/etc/redis/redis.conf
-  volumes:
-    - ./redis/data:/data
-    - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+version: '3.5'
+services:
+  redis:
+    # container_name: redis
+    image: redis:${REDIS_IMAGE_TAG_NAME:-alpine}
+    restart: unless-stopped
+    ports:
+      - 6379
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./redis/data:/data
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf

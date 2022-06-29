@@ -1,11 +1,13 @@
-joomla:
-  container_name: joomla
-  image: joomla:${JOOMLA_IMAGE_TAG_NAME:-latest}
-  restart: unless-stopped
-  ports:
-    - 80
-  environment:
-    JOOMLA_DB_HOST: mysql
-    # JOOMLA_DB_USER: root
-    JOOMLA_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    # JOOMLA_DB_NAME: joomla
+version: '3.5'
+services:
+  joomla:
+    # container_name: joomla
+    image: joomla:${JOOMLA_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 80
+    environment:
+      JOOMLA_DB_HOST: mysql
+      # JOOMLA_DB_USER: root
+      JOOMLA_DB_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      # JOOMLA_DB_NAME: joomla

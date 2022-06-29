@@ -1,15 +1,17 @@
-postgres:
-  container_name: postgres
-  image: postgres:${POSTGRES_IMAGE_TAG_NAME:-alpine}
-  restart: unless-stopped
-  ports:
-    - 5432
-  environment:
-    # PGDATA: /var/lib/postgresql/data
-    # POSTGRES_DB: postgres
-    # POSTGRES_INITDB_ARGS:
-    # POSTGRES_INITDB_WALDIR:
-    POSTGRES_PASSWORD: postgres
-    # POSTGRES_USER: postgres
-  volumes:
-    - ./postgresql/data:/var/lib/postgresql/data
+version: '3.5'
+services:
+  postgres:
+    # container_name: postgres
+    image: postgres:${POSTGRES_IMAGE_TAG_NAME:-alpine}
+    restart: unless-stopped
+    ports:
+      - 5432
+    environment:
+      # PGDATA: /var/lib/postgresql/data
+      # POSTGRES_DB: postgres
+      # POSTGRES_INITDB_ARGS:
+      # POSTGRES_INITDB_WALDIR:
+      POSTGRES_PASSWORD: postgres
+      # POSTGRES_USER: postgres
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data

@@ -1,8 +1,10 @@
-nextcloud:
-  container_name: nextcloud
-  image: nextcloud:${NEXTCLOUD_IMAGE_TAG_NAME:-stable}
-  restart: unless-stopped
-  ports:
-    - 80
-  volumes:
-    - ./nextcloud/html:/var/www/html
+version: '3.5'
+services:
+  nextcloud:
+    # container_name: nextcloud
+    image: nextcloud:${NEXTCLOUD_IMAGE_TAG_NAME:-stable}
+    restart: unless-stopped
+    ports:
+      - 80
+    volumes:
+      - ./nextcloud/html:/var/www/html

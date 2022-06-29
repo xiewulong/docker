@@ -1,13 +1,15 @@
-rancher:
-  container_name: rancher
-  image: rancher/rancher:${RANCHER_IMAGE_TAG_NAME:-stable}
-  restart: unless-stopped
-  command: --acme-domain rancher.mydomain.com
-  ports:
-    - 80
-    - 443
-  volumes:
-    - ./rancher/cacerts.pem:/etc/rancher/ssl/cacerts.pem
-    - ./rancher/fullchain.pem:/etc/rancher/ssl/cert.pem
-    - ./rancher/privkey.pem:/etc/rancher/ssl/key.pem
-    - ./rancher/data:/var/lib/rancher
+version: '3.5'
+services:
+  rancher:
+    # container_name: rancher
+    image: rancher/rancher:${RANCHER_IMAGE_TAG_NAME:-stable}
+    restart: unless-stopped
+    command: --acme-domain rancher.mydomain.com
+    ports:
+      - 80
+      - 443
+    volumes:
+      - ./rancher/cacerts.pem:/etc/rancher/ssl/cacerts.pem
+      - ./rancher/fullchain.pem:/etc/rancher/ssl/cert.pem
+      - ./rancher/privkey.pem:/etc/rancher/ssl/key.pem
+      - ./rancher/data:/var/lib/rancher

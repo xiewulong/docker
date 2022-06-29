@@ -1,16 +1,18 @@
-elasticsearch:
-  container_name: elasticsearch
-  image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_IMAGE_TAG_NAME:-6.3.1}
-  # image: elasticsearch:${ELASTICSEARCH_IMAGE_TAG_NAME:-latest}
-  restart: unless-stopped
-  ports:
-    - 9200
-    - 9300
-  command: -Des.node.name="TestNode" -Ecluster.name=mynewclustername -Ediscovery.zen.minimum_master_nodes=1 -Etransport.host=0.0.0.0
-  environment:
-    - bootstrap.memory_lock=true
-    - cluster.name=docker-cluster
-    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  volumes:
-    - ./elasticsearch/config:/usr/share/elasticsearch/config
-    - ./elasticsearch/data:/usr/share/elasticsearch/data
+version: '3.5'
+services:
+  elasticsearch:
+    # container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_IMAGE_TAG_NAME:-6.3.1}
+    # image: elasticsearch:${ELASTICSEARCH_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 9200
+      - 9300
+    command: -Des.node.name="TestNode" -Ecluster.name=mynewclustername -Ediscovery.zen.minimum_master_nodes=1 -Etransport.host=0.0.0.0
+    environment:
+      - bootstrap.memory_lock=true
+      - cluster.name=docker-cluster
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - ./elasticsearch/config:/usr/share/elasticsearch/config
+      - ./elasticsearch/data:/usr/share/elasticsearch/data

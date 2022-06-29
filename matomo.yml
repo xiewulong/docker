@@ -1,17 +1,17 @@
-matomo:
-  container_name: matomo
-  image: matomo:${MATOMO_IMAGE_TAG_NAME:-fpm-alpine}
-  restart: unless-stopped
-  ports:
-    - 80
-  # command: --config /etc/mongod.conf
-  environment:
-    MATOMO_DATABASE_ADAPTER: mysql
-    MATOMO_DATABASE_HOST: mysql
-    MATOMO_DATABASE_USERNAME: root
-    MATOMO_DATABASE_PASSWORD: root
-    MATOMO_DATABASE_DBNAME: matomo
-    MATOMO_DATABASE_TABLES_PREFIX: t_
-    # PHP_MEMORY_LIMIT:
-  volumes:
-    - ./matomo/html:/var/www/html
+version: '3.5'
+services:
+  matomo:
+    # container_name: matomo
+    image: matomo:${MATOMO_IMAGE_TAG_NAME:-fpm-alpine}
+    restart: unless-stopped
+    ports:
+      - 9000
+    environment:
+      MATOMO_DATABASE_ADAPTER: mysql
+      MATOMO_DATABASE_HOST: mysql
+      MATOMO_DATABASE_USERNAME: matomo
+      MATOMO_DATABASE_PASSWORD: matomo
+      MATOMO_DATABASE_DBNAME: matomo
+      MATOMO_DATABASE_TABLES_PREFIX: matomo_
+    volumes:
+      - ./matomo/html:/var/www/html

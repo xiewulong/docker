@@ -1,11 +1,13 @@
-named:
-  container_name: named
-  image: xiewulong/bind:${NAMED_IMAGE_TAG_NAME:-latest}
-  restart: unless-stopped
-  ports:
-    - 53/tcp
-    - 53/udp
-  # command: -c /etc/bind/named.conf -u named
-  # volumes:
-  #   - ./named/named.conf:/etc/bind/named.conf
-  #   - ./named/data:/var/bind/data
+version: '3.5'
+services:
+  named:
+    # container_name: named
+    image: xiewulong/bind:${NAMED_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 53/tcp
+      - 53/udp
+    # command: -c /etc/bind/named.conf -u named
+    # volumes:
+    #   - ./named/named.conf:/etc/bind/named.conf
+    #   - ./named/data:/var/bind/data

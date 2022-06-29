@@ -1,11 +1,13 @@
-fluentd:
-  container_name: fluentd
-  image: fluentd:${FLUENTD_IMAGE_TAG_NAME:-latest}
-  restart: unless-stopped
-  ports:
-    - 24224/tcp
-    - 24224/udp
-  command: -c /fluentd/etc/fluentd.conf
-  volumes:
-    - ./fluentd/etc:/fluentd/etc
-    - ./fluentd/log:/fluentd/log
+version: '3.5'
+services:
+  fluentd:
+    # container_name: fluentd
+    image: fluentd:${FLUENTD_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 24224/tcp
+      - 24224/udp
+    command: -c /fluentd/etc/fluentd.conf
+    volumes:
+      - ./fluentd/etc:/fluentd/etc
+      - ./fluentd/log:/fluentd/log

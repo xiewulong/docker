@@ -1,14 +1,16 @@
-mongo:
-  container_name: mongo
-  image: mongo:${MONGO_IMAGE_TAG_NAME:-latest}
-  restart: unless-stopped
-  ports:
-    - 27017
-  # command: --config /etc/mongod.conf
-  environment:
-    # MONGO_INITDB_DATABASE: test
-    MONGO_INITDB_ROOT_USERNAME: root
-    MONGO_INITDB_ROOT_PASSWORD: root
-  volumes:
-    - ./mongo/data:/data/db
-    # - ./mongo/mongod.conf:/etc/mongod.conf
+version: '3.5'
+services:
+  mongo:
+    # container_name: mongo
+    image: mongo:${MONGO_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 27017
+    # command: --config /etc/mongod.conf
+    environment:
+      # MONGO_INITDB_DATABASE: test
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./mongo/data:/data/db
+      # - ./mongo/mongod.conf:/etc/mongod.conf

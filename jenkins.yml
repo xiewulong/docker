@@ -1,14 +1,16 @@
-jenkins:
-  container_name: jenkins
-  image: jenkins:${JENKINS_IMAGE_TAG_NAME:-latest}
-  restart: unless-stopped
-  ports:
-    - 8080
-    - 50000
-  volumes:
-    - ./jenkins/home:/var/jenkins_home
-  logging:
-    driver: fluentd
-    options:
-      fluentd-address: localhost:24224
-      tag: httpd.access
+version: '3.5'
+services:
+  jenkins:
+    # container_name: jenkins
+    image: jenkins:${JENKINS_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 8080
+      - 50000
+    volumes:
+      - ./jenkins/home:/var/jenkins_home
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
+        tag: httpd.access
