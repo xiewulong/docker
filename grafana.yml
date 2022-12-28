@@ -1,0 +1,16 @@
+version: '3.5'
+services:
+  grafana:
+    # container_name: grafana
+    image: grafana/grafana:${GRAFANA_IMAGE_TAG_NAME:-main}
+    restart: unless-stopped
+    ports:
+      - 3000
+    environment:
+      GF_INSTALL_PLUGINS: http://plugin-domain.com/my-custom-plugin.zip;custom-plugin,grafana-clock-panel,grafana-simple-json-datasource
+      GF_LOG_MODE: console file # syslog
+      # GF_<SectionName>_<KeyName>__FILE: /run/secrets/admin_password
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/logs:/var/log/grafana

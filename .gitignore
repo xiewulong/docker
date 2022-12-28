@@ -3,16 +3,19 @@
 /docker-compose.yml
 
 # Directories
-/elasticsearch
-/fluentd
-/jenkins
-/kibana
-/matomo
-/mongo
-/mysql
-/named
-/nginx
-/postgresql
-/rancher
-/redis
-/registry
+/elasticsearch/
+/grafana/
+/fluentd/
+/jenkins/
+/kibana/
+/matomo/
+/mongo/
+/mysql/
+/named/
+/nginx/
+/postgresql/
+/prometheus/
+/rancher/
+/redis/
+/registry/
+/strapi/

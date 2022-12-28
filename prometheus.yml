@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  prometheus:
+    # container_name: prometheus
+    image: prom/prometheus:${PROMETHEUS_IMAGE_TAG_NAME:-main}
+    restart: unless-stopped
+    ports:
+      - 9090
+    environment: {}
+    volumes:
+      # - ./prometheus/config:/etc/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
