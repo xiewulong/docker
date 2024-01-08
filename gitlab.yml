@@ -2,7 +2,8 @@ version: '3.6'
 services:
   gitlab:
     # container_name: gitlab
-    image: registry.gitlab.cn/omnibus/gitlab-jh:${REGISTRY_IMAGE_TAG_NAME:-latest}
+    image: gitlab/gitlab-ee:${REGISTRY_IMAGE_TAG_NAME:-latest}
+    # image: registry.gitlab.cn/omnibus/gitlab-jh:${REGISTRY_IMAGE_TAG_NAME:-latest}
     restart: unless-stopped
     ports:
       - 22
@@ -12,7 +13,7 @@ services:
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://gitlab.example.com'
-        # Add any other gitlab.rb configuration here, each on its own line
+        roles ['application_role', 'pages_role', 'sidekiq_role']
     volumes:
       - ./gitlab/config:/etc/gitlab
       - ./gitlab/data:/var/opt/gitlab
