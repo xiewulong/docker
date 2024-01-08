@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  zentao:
+    # container_name: zentao
+    image: hub.zentao.net/app/zentao:${REGISTRY_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 80
+    environment:
+      PHP_SESSION_TYPE: redis
+      MYSQL_INTERNAL: false
+      ZT_MYSQL_HOST:
+      ZT_MYSQL_PORT:
+      ZT_MYSQL_USER:
+      ZT_MYSQL_PASSWORD:
+      ZT_MYSQL_DB:
+    volumes:
+      - ./zentao/data:/data
