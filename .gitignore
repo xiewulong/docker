@@ -6,6 +6,7 @@
 /elasticsearch/
 /grafana/
 /fluentd/
+/gitlab/
 /jenkins/
 /kibana/
 /matomo/
@@ -18,3 +19,4 @@
 /rancher/
 /redis/
 /registry/
+/zentao/
