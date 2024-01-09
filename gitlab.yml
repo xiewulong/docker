@@ -2,7 +2,7 @@ version: '3.6'
 services:
   gitlab:
     # container_name: gitlab
-    image: registry.gitlab.cn/omnibus/gitlab-jh:${REGISTRY_IMAGE_TAG_NAME:-latest}
+    image: registry.gitlab.cn/omnibus/gitlab-jh:${GITLAB_IMAGE_TAG_NAME:-latest}
     restart: unless-stopped
     ports:
       - 22

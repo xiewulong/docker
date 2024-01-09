@@ -2,7 +2,7 @@ version: '3.5'
 services:
   zentao:
     # container_name: zentao
-    image: hub.zentao.net/app/zentao:${REGISTRY_IMAGE_TAG_NAME:-latest}
+    image: hub.zentao.net/app/zentao:${ZENTAO_IMAGE_TAG_NAME:-latest}
     restart: unless-stopped
     ports:
       - 80
