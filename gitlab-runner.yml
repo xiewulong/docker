@@ -7,5 +7,5 @@ services:
     ports:
       - 8093
     volumes:
-      - ./gitlab/runner/data:/etc/gitlab-runner
+      - ./gitlab/runner:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
