@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  gitlab-runner:
+    # container_name: gitlab-runner
+    image: gitlab/gitlab-runner:${GITLAB_RUNNER_IMAGE_TAG_NAME:-latest}
+    restart: unless-stopped
+    ports:
+      - 8093
+    volumes:
+      - ./gitlab/runner/data:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
