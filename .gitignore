@@ -13,6 +13,7 @@
 /mongo/
 /mysql/
 /named/
+/nexus/
 /nginx/
 /postgresql/
 /prometheus/
