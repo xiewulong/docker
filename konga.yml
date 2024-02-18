@@ -2,7 +2,7 @@ version: '3.5'
 services:
   konga:
     # container_name: konga
-    image: pantsel/konga:${KONGA_IMAGE_TAG_NAME:-latest}
+    image: pantsel/konga:${KONGA_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 1337

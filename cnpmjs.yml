@@ -2,7 +2,7 @@ version: '3.5'
 services:
   cnpmjs:
     # container_name: cnpmjs
-    image: xiewulong/cnpmjs:${CNPMJS_IMAGE_TAG_NAME:-latest}
+    image: xiewulong/cnpmjs:${CNPMJS_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 7001

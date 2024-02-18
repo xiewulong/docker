@@ -2,7 +2,7 @@ version: '3.5'
 services:
   plantuml-server:
     # container_name: plantuml-server
-    image: plantuml/plantuml-server:${PLANTUML_SERVER_IMAGE_TAG_NAME:-latest}
+    image: plantuml/plantuml-server:${PLANTUML_SERVER_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 8080

@@ -2,7 +2,7 @@ version: '3.5'
 services:
   named:
     # container_name: named
-    image: xiewulong/bind:${NAMED_IMAGE_TAG_NAME:-latest}
+    image: xiewulong/bind:${NAMED_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 53/tcp

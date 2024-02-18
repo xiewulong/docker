@@ -2,7 +2,7 @@ version: '3.6'
 services:
   gitlab:
     # container_name: gitlab
-    image: gitlab/gitlab-ee:${GITLAB_IMAGE_TAG_NAME:-latest}
+    image: gitlab/gitlab-ee:${GITLAB_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 22

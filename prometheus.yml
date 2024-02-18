@@ -2,7 +2,7 @@ version: '3.5'
 services:
   prometheus:
     # container_name: prometheus
-    image: prom/prometheus:${PROMETHEUS_IMAGE_TAG_NAME:-main}
+    image: prom/prometheus:${PROMETHEUS_IMAGE_TAG:-main}
     restart: unless-stopped
     ports:
       - 9090

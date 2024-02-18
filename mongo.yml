@@ -2,7 +2,7 @@ version: '3.5'
 services:
   mongo:
     # container_name: mongo
-    image: mongo:${MONGO_IMAGE_TAG_NAME:-latest}
+    image: mongo:${MONGO_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 27017

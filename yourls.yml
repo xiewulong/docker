@@ -2,7 +2,7 @@ version: '3.5'
 services:
   yurls:
     # container_name: yurls
-    image: yurls:${YURLS_IMAGE_TAG_NAME:-fpm-alpine}
+    image: yurls:${YURLS_IMAGE_TAG:-fpm-alpine}
     restart: unless-stopped
     ports:
       - 8080

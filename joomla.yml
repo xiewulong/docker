@@ -2,7 +2,7 @@ version: '3.5'
 services:
   joomla:
     # container_name: joomla
-    image: joomla:${JOOMLA_IMAGE_TAG_NAME:-latest}
+    image: joomla:${JOOMLA_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 80

@@ -2,14 +2,14 @@ version: '3.5'
 services:
   zentao:
     # container_name: zentao
-    image: hub.zentao.net/app/zentao:${ZENTAO_IMAGE_TAG_NAME:-latest}
+    image: hub.zentao.net/app/zentao:${ZENTAO_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 80
     environment:
       PHP_SESSION_TYPE: redis
       PHP_SESSION_PATH: tcp://127.0.0.1:6379?auth=user:password
-      MYSQL_INTERNAL: false
+      MYSQL_INTERNAL: true
       ZT_MYSQL_HOST:
       ZT_MYSQL_PORT:
       ZT_MYSQL_USER:

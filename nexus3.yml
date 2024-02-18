@@ -2,7 +2,7 @@ version: '3.8'
 services:
   nexus3:
     # container_name: nexus3
-    image: sonatype/nexus3:${NEXUS3_IMAGE_TAG_NAME:-latest}
+    image: sonatype/nexus3:${NEXUS3_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 8081

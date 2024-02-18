@@ -2,7 +2,7 @@ version: '3.5'
 services:
   rancher:
     # container_name: rancher
-    image: rancher/rancher:${RANCHER_IMAGE_TAG_NAME:-stable}
+    image: rancher/rancher:${RANCHER_IMAGE_TAG:-stable}
     restart: unless-stopped
     command: --acme-domain rancher.mydomain.com
     ports:

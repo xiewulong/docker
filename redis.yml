@@ -2,7 +2,7 @@ version: '3.5'
 services:
   redis:
     # container_name: redis
-    image: redis:${REDIS_IMAGE_TAG_NAME:-alpine}
+    image: redis:${REDIS_IMAGE_TAG:-alpine}
     restart: unless-stopped
     ports:
       - 6379

@@ -2,7 +2,7 @@ version: '3.5'
 services:
   kong:
     # container_name: kong
-    image: kong:${KONG_IMAGE_TAG_NAME:-alpine}
+    image: kong:${KONG_IMAGE_TAG:-alpine}
     restart: unless-stopped
     ports:
       - 8000

@@ -2,7 +2,7 @@ version: '3.5'
 services:
   nextcloud:
     # container_name: nextcloud
-    image: nextcloud:${NEXTCLOUD_IMAGE_TAG_NAME:-stable}
+    image: nextcloud:${NEXTCLOUD_IMAGE_TAG:-stable}
     restart: unless-stopped
     ports:
       - 80

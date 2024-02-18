@@ -2,7 +2,7 @@ version: '3.5'
 services:
   postgres:
     # container_name: postgres
-    image: postgres:${POSTGRES_IMAGE_TAG_NAME:-alpine}
+    image: postgres:${POSTGRES_IMAGE_TAG:-alpine}
     restart: unless-stopped
     ports:
       - 5432

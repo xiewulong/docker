@@ -2,7 +2,7 @@ version: '3.5'
 services:
   matomo:
     # container_name: matomo
-    image: matomo:${MATOMO_IMAGE_TAG_NAME:-fpm-alpine}
+    image: matomo:${MATOMO_IMAGE_TAG:-fpm-alpine}
     restart: unless-stopped
     ports:
       - 9000

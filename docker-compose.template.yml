@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mysql:
-    image: mysql:${MYSQL_IMAGE_TAG_NAME:-latest}
+    image: mysql:${MYSQL_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 3306
@@ -15,7 +15,7 @@ services:
       - intranet
 
   mongo:
-    image: mongo:${MONGO_IMAGE_TAG_NAME:-latest}
+    image: mongo:${MONGO_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 27017
@@ -29,7 +29,7 @@ services:
       - intranet
 
   kong:
-    image: kong:${KONG_IMAGE_TAG_NAME:-alpine}
+    image: kong:${KONG_IMAGE_TAG:-alpine}
     # restart: unless-stopped
     ports:
       - 8000
@@ -62,7 +62,7 @@ services:
       - postgres
 
   konga:
-    image: pantsel/konga:${KONGA_IMAGE_TAG_NAME:-latest}
+    image: pantsel/konga:${KONGA_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 1337
@@ -79,7 +79,7 @@ services:
       - postgres
 
   nginx:
-    image: nginx:${NGINX_IMAGE_TAG_NAME:-stable-alpine}
+    image: nginx:${NGINX_IMAGE_TAG:-stable-alpine}
     restart: unless-stopped
     ports:
       - 80
@@ -97,7 +97,7 @@ services:
       - internet
 
   plantuml-server:
-    image: plantuml/plantuml-server:${PLANTUML_SERVER_IMAGE_TAG_NAME:-latest}
+    image: plantuml/plantuml-server:${PLANTUML_SERVER_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 8080
@@ -105,7 +105,7 @@ services:
       - internet
 
   postgres:
-    image: postgres:${POSTGRES_IMAGE_TAG_NAME:-alpine}
+    image: postgres:${POSTGRES_IMAGE_TAG:-alpine}
     restart: unless-stopped
     ports:
       - 5432
@@ -120,7 +120,7 @@ services:
       - intranet
 
   redis:
-    image: redis:${REDIS_IMAGE_TAG_NAME:-alpine}
+    image: redis:${REDIS_IMAGE_TAG:-alpine}
     restart: unless-stopped
     ports:
       - 6379

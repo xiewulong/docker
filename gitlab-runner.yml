@@ -2,7 +2,7 @@ version: '3.8'
 services:
   gitlab-runner:
     # container_name: gitlab-runner
-    image: gitlab/gitlab-runner:${GITLAB_RUNNER_IMAGE_TAG_NAME:-latest}
+    image: gitlab/gitlab-runner:${GITLAB_RUNNER_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 8093

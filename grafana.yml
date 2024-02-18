@@ -2,7 +2,7 @@ version: '3.5'
 services:
   grafana:
     # container_name: grafana
-    image: grafana/grafana:${GRAFANA_IMAGE_TAG_NAME:-main}
+    image: grafana/grafana:${GRAFANA_IMAGE_TAG:-main}
     restart: unless-stopped
     ports:
       - 3000

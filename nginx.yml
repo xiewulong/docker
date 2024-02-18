@@ -2,7 +2,7 @@ version: '3.5'
 services:
   nginx:
     # container_name: nginx
-    image: nginx:${NGINX_IMAGE_TAG_NAME:-stable-alpine}
+    image: nginx:${NGINX_IMAGE_TAG:-stable-alpine}
     restart: unless-stopped
     ports:
       - 80
