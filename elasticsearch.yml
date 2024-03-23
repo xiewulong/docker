@@ -3,7 +3,7 @@ services:
   elasticsearch:
     # container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_IMAGE_TAG:-8.12.2}
-    # image: elasticsearch:${ELASTICSEARCH_IMAGE_TAG:-latest}
+    # image: elasticsearch:${ELASTICSEARCH_IMAGE_TAG:-8.12.2}
     restart: unless-stopped
     ports:
       - 9200
