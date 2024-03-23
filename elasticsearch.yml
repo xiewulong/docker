@@ -2,7 +2,7 @@ version: '3.8'
 services:
   elasticsearch:
     # container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_IMAGE_TAG:-6.3.1}
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_IMAGE_TAG:-8.12.2}
     # image: elasticsearch:${ELASTICSEARCH_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
@@ -12,7 +12,7 @@ services:
     environment:
       - bootstrap.memory_lock=true
       - cluster.name=docker-cluster
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     volumes:
       - ./elasticsearch/config:/usr/share/elasticsearch/config
       - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
