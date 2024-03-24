@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  odoo:
+    # container_name: odoo
+    image: odoo:${ODOO_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - 8069
+    environment:
+      POSTGRES_HOST:
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+      POSTGRES_DB:
+    volumes:
+      # - ./odoo/addons:/mnt/extra-addons
+      # - ./odoo/config:/etc/odoo
+      - ./odoo/data:/var/lib/odoo

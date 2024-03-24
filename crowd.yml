@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  crowd:
+    # container_name: crowd
+    image: atlassian/crowd:${CROWD_IMAGE_TAG:-5}
+    restart: unless-stopped
+    ports:
+      - 8095
+    # environment:
+    volumes:
+      - ./crowd/data:/var/atlassian/application-data/crowd

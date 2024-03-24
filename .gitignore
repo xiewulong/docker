@@ -3,11 +3,15 @@
 /docker-compose.yml
 
 # Directories
+/bitbucket/
+/confluence/
+/crowd/
 /elasticsearch/
 /grafana/
 /fluentd/
 /gitlab/
 /jenkins/
+/jira/
 /kibana/
 /matomo/
 /mongo/

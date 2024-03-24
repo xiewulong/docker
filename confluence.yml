@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  confluence:
+    # container_name: confluence
+    image: atlassian/confluence:${CONFLUENCE_IMAGE_TAG:-8}
+    restart: unless-stopped
+    ports:
+      - 8090
+      - 8091
+    environment:
+      ATL_DB_TYPE: mssql/mysql/oracle12c/oracle/postgresql
+      ATL_JDBC_URL:
+      ATL_JDBC_USER:
+      ATL_JDBC_PASSWORD:
+    volumes:
+      - ./confluence/data:/var/atlassian/application-data/confluence
