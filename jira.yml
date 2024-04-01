@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  jira:
+    # container_name: jira
+    image: atlassian/jira-software:${JIRA_IMAGE_TAG:-9}
+    restart: unless-stopped
+    ports:
+      - 8080
+    environment:
+      ATL_DB_TYPE: mssql/mysql/mysql57/mysql8/oracle10g/postgres72
+      ATL_JDBC_URL:
+      ATL_JDBC_USER:
+      ATL_JDBC_PASSWORD:
+      JVM_SUPPORT_RECOMMENDED_ARGS: -javaagent:/opt/atlassian/agent.jar
+    volumes:
+      - ./jira/atlassian-agent.jar:/opt/atlassian/agent.jar
+      - ./jira/data:/var/atlassian/application-data/jira

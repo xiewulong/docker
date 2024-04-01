@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  bitbucket:
+    # container_name: bitbucket
+    image: atlassian/bitbucket:${BITBUCKET_IMAGE_TAG:-8}
+    restart: unless-stopped
+    ports:
+      - 7990
+      - 7999
+    environment:
+      JDBC_DRIVER:
+      JDBC_URL:
+      JDBC_USER:
+      JDBC_PASSWORD:
+    volumes:
+      - ./bitbucket/data:/var/atlassian/application-data/bitbucket
