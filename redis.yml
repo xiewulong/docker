@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     ports:
       - 6379
+    # command: --requirepass 123456
     command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
       - ./redis/data:/data
