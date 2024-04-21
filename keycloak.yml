@@ -2,7 +2,8 @@ version: '3.8'
 services:
   keycloak:
     # container_name: keycloak
-    image: quay.io/keycloak/keycloak:${KEYCLOAK_IMAGE_TAG:-latest}
+    # image: quay.io/keycloak/keycloak:${KEYCLOAK_IMAGE_TAG:-latest}
+    image: quay.io/keycloak/keycloak:${KEYCLOAK_IMAGE_TAG:-22.0}
     restart: unless-stopped
     ports:
       - 8080
