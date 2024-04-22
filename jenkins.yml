@@ -2,7 +2,7 @@ version: '3.8'
 services:
   jenkins:
     # container_name: jenkins
-    image: jenkins:${JENKINS_IMAGE_TAG:-latest}
+    image: jenkins:${JENKINS_IMAGE_TAG:-alpine}
     restart: unless-stopped
     ports:
       - 8080
