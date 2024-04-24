@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  superset:
+    # container_name: superset
+    image: apache/superset:${SUPERSET_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - 8080
+    environment:
+      SUPERSET_SECRET_KEY: secret_key
