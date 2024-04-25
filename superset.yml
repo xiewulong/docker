@@ -5,6 +5,6 @@ services:
     image: apache/superset:${SUPERSET_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
-      - 8080
+      - 8088
     environment:
       SUPERSET_SECRET_KEY: secret_key

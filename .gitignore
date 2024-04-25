@@ -6,6 +6,7 @@
 /bitbucket/
 /confluence/
 /crowd/
+/datart/
 /elasticsearch/
 /grafana/
 /fluentd/
@@ -14,6 +15,7 @@
 /jira/
 /kibana/
 /matomo/
+/metabase/
 /mongo/
 /mysql/
 /named/

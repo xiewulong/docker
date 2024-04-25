@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  metabase:
+    # container_name: metabase
+    image: metabase/metabase:${METABASE_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - 3000
+    environment:
+      JAVA_TIMEZONE:
+      # MB_DB_CONNECTION_URI:
+      MB_DB_TYPE:
+      MB_DB_HOST:
+      MB_DB_PORT:
+      MB_DB_USER:
+      MB_DB_PASS:
+      MB_DB_DBNAME:
+      MB_EMAIL_SMTP_USERNAME:
+      MB_EMAIL_SMTP_PASSWORD:
+      MB_LDAP_BIND_DN:
+      MB_LDAP_PASSWORD:
+      MUID:
+      MGID:
+    volumes:
+      - ./metabase/data:/metabase-data
