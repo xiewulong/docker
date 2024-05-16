@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  xwiki:
+    # container_name: xwiki
+    image: xwiki:${XWIKI_IMAGE_TAG:-stable}
+    restart: unless-stopped
+    ports:
+      - 8080
+    environment:
+      DB_HOST:
+      DB_USER:
+      DB_PASSWORD:
+      DB_DATABASE:
+    volumes:
+      - ./xwiki/data:/usr/local/xwiki
