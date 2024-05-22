@@ -13,6 +13,7 @@ services:
       ATL_JDBC_USER:
       ATL_JDBC_PASSWORD:
       JVM_SUPPORT_RECOMMENDED_ARGS: -javaagent:/opt/atlassian/agent.jar
+      TZ: Asia/Shanghai
     volumes:
       - ./jira/atlassian-agent.jar:/opt/atlassian/agent.jar
       - ./confluence/data:/var/atlassian/application-data/confluence
