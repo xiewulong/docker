@@ -18,7 +18,7 @@ services:
       # ATL_PROXY_PORT: 443
       # ATL_TOMCAT_SCHEME: https
       # ATL_TOMCAT_SECURE: true
-      JVM_SUPPORT_RECOMMENDED_ARGS: -javaagent:/opt/atlassian/agent.jar
+      JVM_SUPPORT_RECOMMENDED_ARGS: -Dupm.plugin.upload.enabled=true -javaagent:/opt/atlassian/agent.jar
       TZ: Asia/Shanghai
     volumes:
       - ./jira/atlassian-agent.jar:/opt/atlassian/agent.jar:ro
