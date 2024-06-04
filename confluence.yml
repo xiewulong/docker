@@ -3,6 +3,7 @@ services:
   confluence:
     # container_name: confluence
     image: atlassian/confluence:${CONFLUENCE_IMAGE_TAG:-8}
+    # image: atlassian/confluence:${CONFLUENCE_IMAGE_TAG:-9}
     restart: unless-stopped
     ports:
       - 8090

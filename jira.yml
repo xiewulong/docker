@@ -2,6 +2,9 @@ version: '3.8'
 services:
   jira:
     # container_name: jira
+    # image: atlassian/jira-core:${JIRA_IMAGE_TAG:-9}
+    # image: atlassian/jira-servicemanagement:${JIRA_IMAGE_TAG:-5}
+    # image: atlassian/jira-servicemanagement:${JIRA_IMAGE_TAG:-6}
     image: atlassian/jira-software:${JIRA_IMAGE_TAG:-9}
     restart: unless-stopped
     ports:
