@@ -6,12 +6,13 @@ services:
     restart: unless-stopped
     ports:
       - 5432
+    # command: -c log_timezone="Asia/Shanghai" -c timezone="Asia/Shanghai"
     environment:
       # PGDATA: /var/lib/postgresql/data
-      # POSTGRES_DB: postgres
       # POSTGRES_INITDB_ARGS:
       # POSTGRES_INITDB_WALDIR:
-      POSTGRES_PASSWORD: postgres
       # POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      # POSTGRES_DB: postgres
     volumes:
       - ./postgresql/data:/var/lib/postgresql/data

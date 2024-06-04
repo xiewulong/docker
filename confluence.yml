@@ -13,7 +13,13 @@ services:
       ATL_JDBC_URL:
       ATL_JDBC_USER:
       ATL_JDBC_PASSWORD:
+      # ATL_PROXY_NAME: confluence.example.com
+      # ATL_PROXY_PORT: 443
+      # ATL_TOMCAT_SCHEME: https
+      # ATL_TOMCAT_SECURE: true
+      # JVM_MAXIMUM_MEMORY: 2048m
       JVM_SUPPORT_RECOMMENDED_ARGS: -javaagent:/opt/atlassian/agent.jar
+      TZ: Asia/Shanghai
     volumes:
-      - ./jira/atlassian-agent.jar:/opt/atlassian/agent.jar
+      - ./confluence/atlassian-agent.jar:/opt/atlassian/agent.jar:ro
       - ./confluence/data:/var/atlassian/application-data/confluence

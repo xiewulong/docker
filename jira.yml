@@ -10,11 +10,16 @@ services:
     ports:
       - 8080
     environment:
-      ATL_DB_TYPE: mssql/mysql/mysql57/mysql8/oracle10g/postgres72
-      ATL_JDBC_URL:
-      ATL_JDBC_USER:
-      ATL_JDBC_PASSWORD:
+      # ATL_DB_TYPE: mssql/mysql/mysql57/mysql8/oracle10g/postgres72
+      # ATL_JDBC_URL:
+      # ATL_JDBC_USER:
+      # ATL_JDBC_PASSWORD:
+      # ATL_PROXY_NAME: jira.hisugar.com
+      # ATL_PROXY_PORT: 443
+      # ATL_TOMCAT_SCHEME: https
+      # ATL_TOMCAT_SECURE: true
       JVM_SUPPORT_RECOMMENDED_ARGS: -javaagent:/opt/atlassian/agent.jar
+      TZ: Asia/Shanghai
     volumes:
-      - ./jira/atlassian-agent.jar:/opt/atlassian/agent.jar
+      - ./jira/atlassian-agent.jar:/opt/atlassian/agent.jar:ro
       - ./jira/data:/var/atlassian/application-data/jira
