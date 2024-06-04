@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  appsmith:
+    # container_name: appsmith
+    image: appsmith/appsmith-ce:${APPSMITH_IMAGE_TAG:-latest}
+    # image: appsmith/appsmith-ee:${APPSMITH_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - 80
+      - 443
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - ./appsmith/stacks:/appsmith-stacks

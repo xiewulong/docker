@@ -3,6 +3,7 @@
 /docker-compose.yml
 
 # Directories
+/appsmith/
 /bitbucket/
 /confluence/
 /crowd/
