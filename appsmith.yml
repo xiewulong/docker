@@ -9,6 +9,13 @@ services:
       - 80
       - 443
     environment:
-      TZ: Asia/Shanghai
+      # See https://docs.appsmith.com/getting-started/setup/environment-variables
+      # APPSMITH_ALLOWED_FRAME_ANCESTORS: 'self' http://trusted-other.com http://*.mycompany.com
+      APPSMITH_MONGODB_URI: mongodb+srv://<USERNAME>:<PASSWORD>@<MONGO.HOST.NAME>/<DATABASENAME>
+      # APPSMITH_REDIS_URL: redis://hostname:6379
+      # APPSMITH_SIGNUP_DISABLED: false
+      # HTTP_PROXY: http://1.2.3.4:8080
+      # HTTPS_PROXY: http://1.2.3.4:8080
+      # TZ: Asia/Shanghai
     volumes:
       - ./appsmith/stacks:/appsmith-stacks
