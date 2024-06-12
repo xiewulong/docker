@@ -7,9 +7,9 @@ services:
     ports:
       - 3000
     environment:
-      JAVA_TIMEZONE:
+      JAVA_TIMEZONE: Asia/Shanghai
       # MB_DB_CONNECTION_URI:
-      MB_DB_TYPE:
+      MB_DB_TYPE: h2  # h2/mysql/postgres
       MB_DB_HOST:
       MB_DB_PORT:
       MB_DB_USER:
