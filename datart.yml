@@ -1,12 +1,11 @@
 version: '3.8'
 services:
-  metabase:
+  datart:
     # container_name: datart
     image: datart/datart:${DATART_IMAGE_TAG:-latest}
     restart: unless-stopped
     ports:
       - 8080
-    # environment:
     volumes:
       - ./datart/datart.conf:/datart/config/datart.conf
       - ./datart/files:/datart/files
