@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  dataease:
+    # container_name: dataease
+    image: registry.cn-qingdao.aliyuncs.com/dataease/dataease:${DATAEASE_IMAGE_TAG:-v2.8.0}
+    restart: unless-stopped
+    ports:
+      - 8100
+    volumes:
+      - ./dataease/config:/opt/apps/config
+      - ./dataease/data/logs:/opt/dataease2.0
