@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  nocodb:
+    # container_name: nocodb
+    image: nocodb/nocodb:${NOCODB_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - 8080
+    # environment:
+    #   # See https://docs.nocodb.com/getting-started/self-hosted/environment-variables
+    #   NC_DB:
+    volumes:
+      - ./nocodb/data:/usr/app/data
