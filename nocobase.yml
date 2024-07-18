@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  nocobase:
+    # container_name: nocobase
+    image: nocobase/nocobase:${NOCOBASE_IMAGE_TAG:-latest}
+    # image: registry.cn-shanghai.aliyuncs.com/nocobase/nocobase:${NOCOBASE_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - 80
+    environment:
+      # See https://docs-cn.nocobase.com/welcome/getting-started/env
+      # 初始用户名: admin@nocobase.com
+      # 初始密码: admin123
+      APP_KEY: your-secret-key
+      DB_DIALECT: postgres
+      DB_HOST: postgres
+      DB_DATABASE: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_TIMEZONE: +08:00
+      DB_UNDERSCORED: true
+    volumes:
+      - ./nocobase/data:/app/nocobase/storage
