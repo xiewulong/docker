@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  onlyoffice:
+    # container_name: onlyoffice
+    image: onlyoffice/documentserver:${ONLYOFFICE_IMAGE_TAG:-latest}
+    # image: onlyoffice/documentserver-ee:${ONLYOFFICE_IMAGE_TAG:-latest}
+    # image: onlyoffice/documentserver-de:${ONLYOFFICE_IMAGE_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - 80
+      - 443
+      - 4369
+      - 5432
+      - 5672
+      - 6379
+      - 8000
+      - 8080
+    environment:
+      JWT_ENABLED: false
+      # JWT_SECRET:
+      # TZ: Asia/Shanghai
+    volumes:
+      - ./onlyoffice/data:/var/www/onlyoffice/Data
+      - ./onlyoffice/db:/var/lib/postgresql
+      - ./onlyoffice/lib:/var/lib/onlyoffice
+      - ./onlyoffice/logs:/var/log/onlyoffice
