@@ -9,16 +9,9 @@ services:
     ports:
       - 80
       - 443
-      - 4369
-      - 5432
-      - 5672
-      - 6379
-      - 8000
-      - 8080
     environment:
       JWT_ENABLED: false
       # JWT_SECRET:
-      # TZ: Asia/Shanghai
     volumes:
       - ./onlyoffice/data:/var/www/onlyoffice/Data
       - ./onlyoffice/db:/var/lib/postgresql
